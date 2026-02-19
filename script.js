@@ -149,52 +149,106 @@ document.addEventListener('scroll', function() {
     });
 });
 
-/* --- LÓGICA DO LIGHTBOX (TELA CHEIA) --- */
+/* --- LÓGICA DO LIGHTBOX COM CARROSSEL (TELA CHEIA) --- */
 
 document.addEventListener('DOMContentLoaded', function() {
     const overlay = document.getElementById('fullscreen-overlay');
     const fullImg = document.getElementById('fullscreen-img');
     const closeBtn = document.getElementById('close-fullscreen');
     
+    // Novas variáveis das setas
+    const fsPrevBtn = document.getElementById('fs-prev-btn');
+    const fsNextBtn = document.getElementById('fs-next-btn');
+    
+    let currentImageArray = [];
+    let currentImageIndex = 0;
+
     // Função para abrir o Lightbox
-    function openLightbox(src) {
+    function openLightbox(src, imgElement) {
         fullImg.src = src;
-        overlay.classList.add('active'); // Mostra o overlay
+        overlay.classList.add('active'); 
+
+        // Verifica se a imagem clicada faz parte de um grupo (carrossel)
+        const track = imgElement.closest('.modal-carousel-track');
+        if (track) {
+            // Pega todas as imagens que estão neste projeto
+            const imgs = Array.from(track.querySelectorAll('img'));
+            currentImageArray = imgs.map(img => img.src); // Cria uma lista com os links
+            currentImageIndex = imgs.indexOf(imgElement); // Descobre qual é a atual
+
+            // Só mostra as setas se tiver mais de 1 foto
+            if (currentImageArray.length > 1) {
+                fsPrevBtn.style.display = 'flex';
+                fsNextBtn.style.display = 'flex';
+            } else {
+                fsPrevBtn.style.display = 'none';
+                fsNextBtn.style.display = 'none';
+            }
+        } else {
+            // Se for uma foto isolada
+            currentImageArray = [src];
+            currentImageIndex = 0;
+            fsPrevBtn.style.display = 'none';
+            fsNextBtn.style.display = 'none';
+        }
     }
 
     // Função para fechar o Lightbox
     function closeLightbox() {
-        overlay.classList.remove('active'); // Esconde o overlay
+        overlay.classList.remove('active'); 
         setTimeout(() => {
-            fullImg.src = ''; // Limpa a imagem após fechar
+            fullImg.src = ''; 
         }, 300);
     }
 
-    // 1. Detectar clique nas imagens do Popup (Usando delegação de eventos)
-    // Isso garante que funcione mesmo se a imagem for carregada dinamicamente
+    // Funções de Passar Imagem
+    function fsNextImage(e) {
+        if (e) e.stopPropagation(); // Evita que feche ao clicar no botão
+        if (currentImageArray.length > 1) {
+            currentImageIndex = (currentImageIndex + 1) % currentImageArray.length;
+            fullImg.src = currentImageArray[currentImageIndex];
+        }
+    }
+
+    function fsPrevImage(e) {
+        if (e) e.stopPropagation();
+        if (currentImageArray.length > 1) {
+            currentImageIndex = (currentImageIndex - 1 + currentImageArray.length) % currentImageArray.length;
+            fullImg.src = currentImageArray[currentImageIndex];
+        }
+    }
+
+    // 1. Detectar clique nas imagens do Popup
     document.body.addEventListener('click', function(e) {
-        // Verifica se clicou em uma imagem que está dentro de um modal ou carrossel
         if (e.target.tagName === 'IMG' && 
            (e.target.closest('.modal-content') || e.target.closest('.carousel-item'))) {
-            
-            openLightbox(e.target.src);
+            // Passa o link e o elemento da imagem clicada
+            openLightbox(e.target.src, e.target);
         }
     });
 
-    // 2. Fechar ao clicar no X
+    // 2. Eventos de Clique (Botões e Fundo)
+    if (fsNextBtn) fsNextBtn.addEventListener('click', fsNextImage);
+    if (fsPrevBtn) fsPrevBtn.addEventListener('click', fsPrevImage);
     closeBtn.addEventListener('click', closeLightbox);
-
-    // 3. Fechar ao clicar no fundo preto (fora da imagem)
+    
     overlay.addEventListener('click', function(e) {
+        // Só fecha se clicar no fundo preto escuro
         if (e.target === overlay) {
             closeLightbox();
         }
     });
 
-    // 4. Fechar ao apertar a tecla ESC
+    // 3. Suporte ao Teclado (ESC para sair, Setas para passar)
     document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape' && overlay.classList.contains('active')) {
-            closeLightbox();
+        if (overlay.classList.contains('active')) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            } else if (e.key === 'ArrowRight') {
+                fsNextImage();
+            } else if (e.key === 'ArrowLeft') {
+                fsPrevImage();
+            }
         }
     });
 });

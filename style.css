@@ -794,6 +794,37 @@ footer {
 .modal-nav-btn.prev { left: 10px; }
 .modal-nav-btn.next { right: 10px; }
 
+/* --- ÍCONE DE LUPA (AMPLIAR IMAGEM) --- */
+.zoom-indicator {
+    position: absolute;
+    bottom: 15px; /* Distância do fundo */
+    right: 15px;  /* Distância da direita */
+    background-color: var(--orange-accent, #0D1164); /* Sua cor principal */
+    color: #fff;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    z-index: 10;
+    
+    /* O SEGREDO: O clique "atravessa" a lupa e acerta a imagem embaixo dela */
+    pointer-events: none; 
+    
+    /* Animação suave */
+    opacity: 0.7;
+    transition: all 0.3s ease;
+}
+
+/* Quando o usuário passa o mouse na imagem, a lupa brilha e cresce */
+.modal-carousel-container:hover .zoom-indicator {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
 /* --- CSS Timeline: Cartão Único (Logo dentro) --- */
 
 :root {
@@ -1058,6 +1089,41 @@ footer {
 /* 4. Mudar cursor para Lupa nas imagens do Popup */
 .modal-body img, .carousel-item img {
     cursor: zoom-in; /* Mostra lupa com + */
+}
+
+/* --- SETAS DE NAVEGAÇÃO DA TELA CHEIA --- */
+.fs-nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.1); /* Fundo transparente suave */
+    border: none;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10000; /* Fica na frente de tudo */
+    color: #fff;
+    font-size: 1.8rem;
+    display: none; /* Começa escondido, o JS ativa se tiver mais de 1 foto */
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+}
+
+.fs-nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3); /* Brilha ao passar o mouse */
+    transform: translateY(-50%) scale(1.1);
+}
+
+#fs-prev-btn { left: 30px; }
+#fs-next-btn { right: 30px; }
+
+/* Diminui um pouco no celular */
+@media (max-width: 768px) {
+    .fs-nav-btn { width: 45px; height: 45px; font-size: 1.2rem; }
+    #fs-prev-btn { left: 10px; }
+    #fs-next-btn { right: 10px; }
 }
 
 /* =========================================
