@@ -5,26 +5,35 @@
 /* --- 1. VARIÁVEIS DO TEMA E CORES --- */
 :root {
     /* Cores de Fundo: Tons de Grafite/Asfalto (Sóbrios, elegantes e limpos) */
-    --bg-primary: #121212;   /* Fundo Principal - Grafite Escuro */
-    --bg-secondary: #1a1a1a; /* Fundo Secundário para mesclar seções */
-    --bg-card: #222222;      /* Fundo para os cartões (Projetos/Habilidades) */
-    
+    --bg-primary: #121212;
+    /* Fundo Principal - Grafite Escuro */
+    --bg-secondary: #1a1a1a;
+    /* Fundo Secundário para mesclar seções */
+    --bg-card: #222222;
+    /* Fundo para os cartões (Projetos/Habilidades) */
+
     /* Textos: Contrastes Suaves para leitura técnica prolongada */
-    --text-main: #e8e8e8;    /* Branco Fosco para Títulos e Destaques */
-    --text-muted: #9e9e9e;   /* Cinza Claro para parágrafos */
-    
+    --text-main: #e8e8e8;
+    /* Branco Fosco para Títulos e Destaques */
+    --text-muted: #9e9e9e;
+    /* Cinza Claro para parágrafos */
+
     /* Destaque (Accent): Cobre / Ouro Velho (Sofisticação/Arquitetural) */
-    --accent-color: #c98e4d; /* Ouro Velho/Cobre Brilhante */
-    --accent-hover: #e0a35e; /* Hover sutilmente mais claro */
-    
+    --accent-color: #c98e4d;
+    /* Ouro Velho/Cobre Brilhante */
+    --accent-hover: #e0a35e;
+    /* Hover sutilmente mais claro */
+
     /* Tipografia: Foco em Legibilidade e Formalidade */
     --font-heading: 'Roboto', sans-serif;
     --font-body: 'Inter', sans-serif;
-    
+
     /* Layout Utilitários */
     --transition-smooth: all 0.35s ease-in-out;
-    --border-radius: 4px; /* Raio bem pequeno, imitando cantos vivos construtivos */
-    --border-light: 1px solid rgba(255, 255, 255, 0.08); /* Linha fina de marcação */
+    --border-radius: 4px;
+    /* Raio bem pequeno, imitando cantos vivos construtivos */
+    --border-light: 1px solid rgba(255, 255, 255, 0.08);
+    /* Linha fina de marcação */
 }
 
 
@@ -36,7 +45,8 @@
 }
 
 html {
-    scroll-behavior: smooth; /* Rolagem nativa suave entre ancoras */
+    scroll-behavior: smooth;
+    /* Rolagem nativa suave entre ancoras */
 }
 
 body.engineering-theme {
@@ -47,7 +57,12 @@ body.engineering-theme {
     overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
     font-weight: 500;
 }
@@ -103,7 +118,8 @@ img {
 
 
 /* --- 3. BOTÕES (LINHAS RETAS E ELEGANTES) --- */
-.btn-primary, .btn-secondary {
+.btn-primary,
+.btn-secondary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -122,7 +138,8 @@ img {
 /* O Botão Primário é Dourado/Cobre Sólido */
 .btn-primary {
     background-color: var(--accent-color);
-    color: #111; /* Contraste forte no botão */
+    color: #111;
+    /* Contraste forte no botão */
     border: 1px solid var(--accent-color);
 }
 
@@ -152,7 +169,8 @@ img {
     left: 0;
     width: 100%;
     z-index: 1000;
-    background-color: rgba(18, 18, 18, 0.95); /* Fundo quase sólido mas com levísima transparência pra não sufocar */
+    background-color: rgba(18, 18, 18, 0.95);
+    /* Fundo quase sólido mas com levísima transparência pra não sufocar */
     border-bottom: var(--border-light);
     transition: padding 0.3s ease;
     padding: 20px 0;
@@ -160,7 +178,8 @@ img {
 
 .main-header.scrolled {
     padding: 10px 0;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra elegante no scroll */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* Sombra elegante no scroll */
 }
 
 .nav-container {
@@ -193,7 +212,8 @@ img {
     position: relative;
 }
 
-.nav-link:hover, .nav-link.active {
+.nav-link:hover,
+.nav-link.active {
     color: var(--accent-color);
 }
 
@@ -208,12 +228,14 @@ img {
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after, .nav-link.active::after {
+.nav-link:hover::after,
+.nav-link.active::after {
     width: 100%;
 }
 
 .nav-cta {
-    padding: 8px 20px; /* Menor que os botões padrão */
+    padding: 8px 20px;
+    /* Menor que os botões padrão */
 }
 
 .mobile-menu-toggle {
@@ -271,6 +293,7 @@ img {
     max-width: 500px;
     margin-bottom: 40px;
     line-height: 1.7;
+    text-align: justify;
 }
 
 .hero-actions {
@@ -285,12 +308,10 @@ img {
     height: auto;
     margin: 0 auto;
     border-radius: var(--border-radius);
-    box-shadow: 20px 20px 0px var(--accent-color); /* Cópia fixa na cor de destaque */
+    box-shadow: 20px 20px 0px var(--accent-color);
+    /* Cópia fixa na cor de destaque */
     transition: var(--transition-smooth);
 }
-
-
-
 
 /* --- 6. SOBRE MIM --- */
 .about-content {
@@ -362,7 +383,7 @@ img {
 .skill-card:hover {
     transform: translateY(-5px);
     border-color: var(--accent-color);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .skill-icon-wrapper {
@@ -377,12 +398,14 @@ img {
 .skill-icon-wrapper img {
     max-width: 100%;
     max-height: 100%;
-    filter: invert(0.8) sepia(1) hue-rotate(180deg) saturate(0%); /* Deixa num tom esbranquiçado uniforme */
+    filter: invert(0.8) sepia(1) hue-rotate(180deg) saturate(0%);
+    /* Deixa num tom esbranquiçado uniforme */
     transition: var(--transition-smooth);
 }
 
 .skill-card:hover .skill-icon-wrapper img {
-    filter: none; /* Retorna as cores originais no hover */
+    filter: none;
+    /* Retorna as cores originais no hover */
 }
 
 .skill-card h3 {
@@ -403,7 +426,8 @@ img {
     font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    opacity: 0;           /* Oculto, exibe no hover */
+    opacity: 0;
+    /* Oculto, exibe no hover */
     transform: translateY(10px);
     transition: var(--transition-smooth);
     margin-top: auto;
@@ -450,7 +474,8 @@ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    filter: grayscale(80%); /* Combina as fotos p/ não ficar tão colorida até focar */
+    filter: grayscale(80%);
+    /* Combina as fotos p/ não ficar tão colorida até focar */
     transition: var(--transition-smooth);
 }
 
@@ -568,7 +593,7 @@ img {
 .timeline-card:hover {
     border-color: var(--accent-color);
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 .timeline-row:hover .timeline-dot-central {
@@ -624,7 +649,8 @@ img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    filter: invert(0.8) sepia(1) hue-rotate(180deg) saturate(0%); /* Escala de cinza/pálida */
+    filter: brightness(0) invert(1);
+    /* Branca pura até o hover */
     transition: var(--transition-smooth);
 }
 
@@ -712,7 +738,7 @@ img {
 .social-links-footer a {
     width: 45px;
     height: 45px;
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -742,7 +768,10 @@ img {
 /* --- 11. SISTEMA E DESIGN DO MODAL (COM CARROSSEL) --- */
 .modal-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(10, 10, 10, 0.9);
     z-index: 9999;
     display: flex;
@@ -764,7 +793,8 @@ img {
     max-width: 850px;
     max-height: 90vh;
     border: var(--border-light);
-    border-bottom: 3px solid var(--accent-color); /* Toque final de cobre no rodapé da caixa */
+    border-bottom: 3px solid var(--accent-color);
+    /* Toque final de cobre no rodapé da caixa */
     position: relative;
     overflow-y: auto;
     transform: translateY(30px);
@@ -837,7 +867,8 @@ img {
 .modal-header-info h4 {
     font-size: 1rem;
     color: var(--accent-color);
-    font-family: var(--font-body); /* Body font pra ser menos gritante */
+    font-family: var(--font-body);
+    /* Body font pra ser menos gritante */
 }
 
 /* Área do Carrossel (Visível apenas se houver imagem p/ injetar) */
@@ -845,7 +876,8 @@ img {
     width: 100%;
     background-color: var(--bg-secondary);
     position: relative;
-    padding: 20px 40px 45px 40px; /* Mais espaco inferior (45px) para a bolinha não bater no texto e na linha */
+    padding: 20px 40px 45px 40px;
+    /* Mais espaco inferior (45px) para a bolinha não bater no texto e na linha */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -867,9 +899,9 @@ img {
     position: absolute;
     top: 10px;
     right: 10px;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0, 0, 0, 0.6);
     color: var(--text-main);
-    border: 1px solid rgba(255,255,255,0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     width: 35px;
     height: 35px;
     display: flex;
@@ -890,16 +922,17 @@ img {
 .carousel-image-container img {
     max-width: 100%;
     max-height: 100%;
-    object-fit: contain; /* Não corta a imagem original */
+    object-fit: contain;
+    /* Não corta a imagem original */
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
 }
 
 .carousel-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
     color: #fff;
     border: none;
     width: 40px;
@@ -918,8 +951,13 @@ img {
     background: var(--accent-color);
 }
 
-.carousel-arrow.prev { left: 10px; }
-.carousel-arrow.next { right: 10px; }
+.carousel-arrow.prev {
+    left: 10px;
+}
+
+.carousel-arrow.next {
+    right: 10px;
+}
 
 /* Bolinhas indicadoras do carrossel */
 .carousel-indicators {
@@ -962,19 +1000,25 @@ img {
 .modal-box::-webkit-scrollbar {
     width: 8px;
 }
+
 .modal-box::-webkit-scrollbar-track {
-    background: var(--bg-primary); 
+    background: var(--bg-primary);
 }
+
 .modal-box::-webkit-scrollbar-thumb {
-    background: var(--accent-color); 
+    background: var(--accent-color);
 }
 
 /* --- 12. SISTEMA DE TELACHEIA (LIGHTBOX) --- */
 .lightbox-overlay {
     position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-color: rgba(5, 5, 5, 0.95);
-    z-index: 10000; /* Acima do Modal */
+    z-index: 10000;
+    /* Acima do Modal */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1001,7 +1045,7 @@ img {
     max-height: 90vh;
     object-fit: contain;
     border-radius: var(--border-radius);
-    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
     transition: opacity 0.3s ease;
 }
 
@@ -1041,8 +1085,13 @@ img {
     color: var(--accent-color);
 }
 
-.lightbox-arrow.prev { left: 20px; }
-.lightbox-arrow.next { right: 20px; }
+.lightbox-arrow.prev {
+    left: 20px;
+}
+
+.lightbox-arrow.next {
+    right: 20px;
+}
 
 
 /* --- 13. ANIMAÇÕES SCROLL OBSERVER --- */
@@ -1057,8 +1106,13 @@ img {
     transform: translateY(0);
 }
 
-.delay-1 { transition-delay: 0.2s; }
-.delay-2 { transition-delay: 0.4s; }
+.delay-1 {
+    transition-delay: 0.2s;
+}
+
+.delay-2 {
+    transition-delay: 0.4s;
+}
 
 
 @media screen and (max-width: 1024px) {
@@ -1068,21 +1122,23 @@ img {
 }
 
 @media screen and (max-width: 768px) {
+
     /* Hero e Global */
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
     }
-    
+
     .hero-actions {
         justify-content: center;
     }
 
     .hero-visual {
-        order: -1; /* Foto sobe pra cima no celular */
+        order: -1;
+        /* Foto sobe pra cima no celular */
         margin-bottom: 30px;
     }
-    
+
     .about-stats-container {
         flex-direction: column;
         gap: 30px;
@@ -1093,31 +1149,61 @@ img {
     }
 
     /* Timeline Responsiva */
-    .central-timeline::after { left: 31px; }
-    .timeline-row { width: 100%; padding-left: 70px; padding-right: 25px; }
-    .timeline-row.left-side { left: 0; }
-    .timeline-row.right-side { left: 0; }
-    .left-side .timeline-card::before, .right-side .timeline-card::before {
-        left: -10px; right: auto;
+    .central-timeline::after {
+        left: 31px;
+    }
+
+    .timeline-row {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+
+    .timeline-row.left-side {
+        left: 0;
+    }
+
+    .timeline-row.right-side {
+        left: 0;
+    }
+
+    .left-side .timeline-card::before,
+    .right-side .timeline-card::before {
+        left: -10px;
+        right: auto;
         border-width: 10px 10px 10px 0;
         border-color: transparent var(--bg-card) transparent transparent;
     }
-    .left-side .timeline-card:hover::before, .right-side .timeline-card:hover::before {
+
+    .left-side .timeline-card:hover::before,
+    .right-side .timeline-card:hover::before {
         border-color: transparent var(--accent-color) transparent transparent;
     }
-    .timeline-dot-central { left: 24px; right: auto; }
-    .right-side .timeline-dot-central { left: 24px; }
-    
-    .left-side .timeline-card { text-align: left; }
+
+    .timeline-dot-central {
+        left: 24px;
+        right: auto;
+    }
+
+    .right-side .timeline-dot-central {
+        left: 24px;
+    }
+
+    .left-side .timeline-card {
+        text-align: left;
+    }
 
     /* Modal Responsivo */
     .modal-carousel-area {
         padding: 20px 10px;
     }
+
     .carousel-image-container {
         height: 250px;
     }
-    .modal-header-info, .modal-text-content {
+
+    .modal-header-info,
+    .modal-text-content {
         padding-left: 20px;
         padding-right: 20px;
     }
@@ -1126,9 +1212,10 @@ img {
     .mobile-menu-toggle {
         display: block;
     }
-    
+
     .desktop-nav {
-        display: none; /* Desliga no CSS para ligar com JS */
+        display: none;
+        /* Desliga no CSS para ligar com JS */
         flex-direction: column;
         position: absolute;
         top: 100%;
@@ -1138,7 +1225,7 @@ img {
         border-bottom: var(--border-light);
         padding: 20px 0;
         text-align: center;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
     .desktop-nav.active {
