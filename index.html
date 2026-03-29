@@ -1,372 +1,566 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jackson Santana | Engenharia Civil</title>
-    
+
+    <!-- Google Fonts: Inter (Corpo) e Roboto (Títulos) para um aspecto mais sóbrio -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Roboto:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome para Ícones Redes Sociais e setas -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Link para nosso estilo -->
     <link rel="stylesheet" href="style.css">
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-395BP5EJ4Z"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-395BP5EJ4Z');
-    </script>
 </head>
-<body>
 
-    <header id="header">
-        <div class="container">
-            <nav>
-                <i class="fas fa-bars" id="menu-icon"></i>
-                <div class="logo">Jackson Santana.</div>
-                <ul class="nav-links">
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#resume">Currículo</a></li>
-                    <li><a href="#habilidades">Habilidades</a></li>
-                    <li><a href="#projetos">Projetos</a></li>
-                </ul>
+<body class="engineering-theme">
+
+    <!-- Navegação Superior -->
+    <header class="main-header">
+        <div class="nav-container">
+            <!-- Logo Elegante e Branca -->
+            <a href="#hero" class="logo">Jackson Santana</a>
+
+            <!-- Menu Desktop -->
+            <nav class="desktop-nav">
+                <a href="#sobre" class="nav-link">Sobre Mim</a>
+                <a href="#habilidades" class="nav-link">Competências</a>
+                <a href="#projetos" class="nav-link">Projetos</a>
+                <a href="#experiencia" class="nav-link">Trajetória</a>
+                <a href="#contato" class="btn-primary nav-cta">Fale Conosco</a>
             </nav>
+
+            <!-- Ícone Menu Mobile -->
+            <button class="mobile-menu-toggle" aria-label="Abrir Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </div>
     </header>
 
-    <section id="home">
-    <div class="container hero-content hidden">
-        <h1>Jackson Santana</h1>
-        <p>Em busca de novos horizontes.</p>
+    <main>
+        <!-- ================= HERO SECTION ================= -->
+        <section id="hero" class="section hero-section">
+            <div class="container hero-grid">
 
-        <div class="botoes-home">
-            <a href="#sobre" class="btn-central">Sobre</a>
-            <a href="#resume" class="btn-central">Currículo</a>
-            <a href="#habilidades" class="btn-central">Habilidades</a>
-            <a href="#projetos" class="btn-central">Projetos</a>
-        </div>
-    </div>
-</section>
+                <div class="hero-text observe-fade-up">
+                    <span class="eyebrow-text">Bem-vindo</span>
+                    <h1 class="main-title">Olá, sou Jackson Santana.</h1>
+                    <h2 class="sub-title">Engenharia Civil & Planejamento</h2>
+                    <p class="hero-desc">Buscando novos horizontes. Transformando conceitos técnicos em estruturas
+                        sólidas com eficiência, planejamento estratégico e rigor construtivo.</p>
 
-    <section id="sobre">
-    <div class="container">
-        <div class="about-card hidden">
-            
-            <div class="about-image-wrapper">
-                <img src="img/backgroundprofile.png" alt="Foto de Jackson Santana">
-            </div>
-
-            <div class="about-text-content">
-                <span class="about-tag">Sobre Mim</span>
-                
-                <h2>Jackson Santana</h2>
-                
-                <p>Olá! Sou graduando em Engenharia Civil e apaixonado por transformar conceitos abstratos em estruturas sólidas e funcionais. Buscando cada dia mais conhecimentos e aprofundamentos nessa profissão magnífica.</p>
-                <p>Minha abordagem combina rigor técnico com uma estética limpa, garantindo que a funcionalidade e o design caminhem juntos, com eficiência e com as melhores tecnologias do mercado.</p>
-                
-                <div class="about-btn-area">
-                    <a href="https://wa.me/5587981632144" target="_blank" class="btn">Entre em Contato</a>
+                    <div class="hero-actions">
+                        <a href="#projetos" class="btn-primary">Ver Projetos</a>
+                        <a href="#sobre" class="btn-secondary">Conhecer Perfil</a>
+                    </div>
                 </div>
+
+                <!-- Foto livre, sem moldes de "caixa" ou holograma, sombra elegante para dar profundidade -->
+                <div class="hero-visual observe-fade-up delay-1">
+                    <img src="img/profile.webp" alt="Jackson Santana" class="profile-img-free">
+                </div>
+
             </div>
+        </section>
 
-        </div>
-    </div>
-</section>
+        <!-- ================= SOBRE MIM ================= -->
+        <section id="sobre" class="section about-section">
+            <div class="container observe-fade-up">
+                <div class="section-header">
+                    <h2>Sobre Mim</h2>
+                    <div class="divider"></div>
+                </div>
 
-<section id="resume">
-    <div class="container">
-        
-        <div class="content-card hidden">
-            
-            <div class="resume-section">
-                <h2 class="card-title">Formação Acadêmica</h2>
+                <div class="about-content">
+                    <p>Olá! Sou graduando em Engenharia Civil e apaixonado por transformar conceitos abstratos em
+                        estruturas sólidas e funcionais. Buscando cada dia mais conhecimentos e aprofundamentos nessa
+                        profissão magnífica.</p>
+                    <p>Minha abordagem combina rigor técnico com uma estética limpa, garantindo que a funcionalidade e o
+                        design caminhem juntos, com eficiência e com as melhores tecnologias do mercado. Meu foco atual
+                        recai na modelagem paramétrica (BIM), projetos de infraestrutura civil e gestão impecável de
+                        canteiros de obras.</p>
 
-                <div class="horizontal-timeline centered-timeline">
-                    <div class="timeline-item clickable"
-                         data-title="Bacharelado em Engenharia Civil"
-                         data-subtitle="UNIVASF | 2022 - Atualmente"
-                         data-details="Graduando o 9º período pela Universidade Federal do Vale do São Francisco, situada no interior da Bahia, na cidade de Juazeiro. Durante a graduação, não aprendi apenas sobre cálculos, estruturas e projetos, mas também sobre resiliência e a responsabilidade de transformar o ambiente ao nosso redor. A UNIVASF foi a base sólida que me preparou para os desafios do mercado, proporcionando experiências que vão muito além da sala de aula. ">
-                        
-                        <div class="item-content">
-                            <div class="internal-logo">
-                                <img src="img/Experiências/logo-faculdade.png" alt="UF" onerror="this.style.display='none';">
-                            </div>
-                            <div class="text-area">
-                                <span class="resume-date">2022 - Atualmente</span>
-                                <h4>Bacharelado em Eng. Civil</h4>
-                                <p class="institution">UNIVASF</p>
-                                <span class="see-more">Ver detalhes +</span>
-                            </div>
+                    <div class="about-stats-container">
+                        <div class="stat-item">
+                            <span class="stat-number">9º</span>
+                            <span class="stat-label">Período Eng. Civil</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">+2</span>
+                            <span class="stat-label">Anos de Atuação</span>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-            <div class="spacer-internal"></div>
+        <!-- ================= COMPETÊNCIAS TÉCNICAS (HABILIDADES) ================= -->
+        <section id="habilidades" class="section skills-section bg-alternado">
+            <div class="container observe-fade-up">
+                <div class="section-header">
+                    <h2>Competências Técnicas</h2>
+                    <div class="divider"></div>
+                </div>
 
-            <div class="resume-section">
-                <h2 class="card-title">Experiência Profissional</h2>
+                <div class="skills-grid">
+                    <!-- Cada card possui um identificador que conectamos ao DB do Modal e dizemos "souHabilidade" no JS pra não errar carrossel -->
 
-                <div class="horizontal-timeline centered-timeline">
-                    <div class="timeline-item clickable"
-                         data-title="Coordenador de Projetos"
-                         data-subtitle="Concretize Júnior | Jan.23 - nov.25"
-                         data-details="Atuei na Coordenação de Projetos em uma Empresa Júnior de Engenharia Civil, liderando equipes multidisciplinares no desenvolvimento de soluções técnicas. Fui responsável pelo gerenciamento integral do ciclo de vida dos projetos, desde a negociação e precificação junto aos clientes até a definição de cronogramas e o controle de qualidade das entregas, desenvolvendo competências sólidas em liderança, gestão de tempo e relacionamento interpessoal no ambiente corporativo.">
-                         
-                        <div class="item-content">
-                            <div class="internal-logo">
-                                <img src="img/Experiências/concretize.png" alt="Studio" onerror="this.style.display='none';">
+                    <div class="skill-card clickable-modal" data-modal="modal-skill-autocad">
+                        <div class="skill-icon-wrapper">
+                            <img src="img/Habilidades/Logos/autocad.jpg" alt="AutoCAD"
+                                onerror="this.src='';this.alt='AutoCAD'">
+                        </div>
+                        <h3>AutoCAD 2D</h3>
+                        <p class="skill-cat">Projetos & Quantitativos</p>
+                        <span class="link-saiba-mais">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="skill-card clickable-modal" data-modal="modal-skill-revit">
+                        <div class="skill-icon-wrapper">
+                            <img src="img/Habilidades/Logos/revit.png" alt="Revit"
+                                onerror="this.src='';this.alt='Revit'">
+                        </div>
+                        <h3>Revit & BIM</h3>
+                        <p class="skill-cat">Modelagem MEP & 3D</p>
+                        <span class="link-saiba-mais">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="skill-card clickable-modal" data-modal="modal-skill-cype">
+                        <div class="skill-icon-wrapper">
+                            <img src="img/Habilidades/Logos/cypecad.png" alt="CypeCAD"
+                                onerror="this.src='';this.alt='CypeCAD'">
+                        </div>
+                        <h3>CypeCAD</h3>
+                        <p class="skill-cat">Cálculo Estrutural</p>
+                        <span class="link-saiba-mais">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="skill-card clickable-modal" data-modal="modal-skill-planner">
+                        <div class="skill-icon-wrapper">
+                            <img src="img/Habilidades/Logos/excelms.png" alt="MS Project & Excel"
+                                onerror="this.src='';this.alt='Excel/Project'">
+                        </div>
+                        <h3>Project & Excel</h3>
+                        <p class="skill-cat">Orçamento e Gestão</p>
+                        <span class="link-saiba-mais">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+                    </div>
+
+                    <div class="skill-card clickable-modal" data-modal="modal-skill-civil">
+                        <div class="skill-icon-wrapper">
+                            <img src="img/Habilidades/Logos/civil3d.svg" alt="Civil3D"
+                                onerror="this.src='';this.alt='Civil3D'">
+                        </div>
+                        <h3>Civil 3D</h3>
+                        <p class="skill-cat">Rodovias & Infra</p>
+                        <span class="link-saiba-mais">Ver detalhes <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROJETOS RECENTES ================= -->
+        <section id="projetos" class="section projects-section">
+            <div class="container observe-fade-up">
+                <div class="section-header">
+                    <h2>Portfólio de Projetos</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="projects-grid">
+
+                    <!-- Card de Projeto 1 -->
+                    <div class="project-card clickable-modal" data-modal="modal-proj-rodoviario">
+                        <div class="project-img-container">
+                            <img src="img/Projetos/civil2.png" alt="Rodoviário">
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span>Civil 3D</span>
+                                <span>Infraestrutura</span>
                             </div>
-                            <div class="text-area">
-                                <span class="resume-date">2023 - 2025</span>
+                            <h3>Projeto Rodoviário Casa Nova</h3>
+                            <p>Traçado geométrico de 48km adaptado para transporte e logística de componentes eólicos na
+                                região.</p>
+                            <span class="link-saiba-mais">Ver Detalhes do Projeto <i
+                                    class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card de Projeto 2 -->
+                    <div class="project-card clickable-modal" data-modal="modal-proj-eletrico">
+                        <div class="project-img-container">
+                            <img src="img/Projetos/elet1.png" alt="Elétrico">
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span>Revit</span>
+                                <span>Elétrica NBR5410</span>
+                            </div>
+                            <h3>Instalações Elétricas em BIM</h3>
+                            <p>Modelagem em baixa tensão, desde o dimensionamento de demanda até o equilíbrio de fases
+                                de quadros.</p>
+                            <span class="link-saiba-mais">Ver Detalhes do Projeto <i
+                                    class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card de Projeto 3 -->
+                    <div class="project-card clickable-modal" data-modal="modal-proj-hidro">
+                        <div class="project-img-container">
+                            <img src="img/Projetos/hidro.png" alt="Hidro">
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span>Revit MEP</span>
+                                <span>Saneamento</span>
+                            </div>
+                            <h3>Residência - Hidrossanitário</h3>
+                            <p>Implementação do sistema de água fria e esgoto sanitário, extração de listas de materiais
+                                exatas.</p>
+                            <span class="link-saiba-mais">Ver Detalhes do Projeto <i
+                                    class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Card de Projeto 4 -->
+                    <div class="project-card clickable-modal" data-modal="modal-proj-coord">
+                        <div class="project-img-container">
+                            <img src="img/Projetos/coord.png" alt="Gestão">
+                        </div>
+                        <div class="project-info">
+                            <div class="tags">
+                                <span>Gestão</span>
+                                <span>MS Project</span>
+                            </div>
+                            <h3>Coordenação Multidisciplinar</h3>
+                            <p>Gerenciamento da modelagem combinada de Edificações, Elétrica e Hidro e compatibilização
+                                estrutural.</p>
+                            <span class="link-saiba-mais">Ver Detalhes do Projeto <i
+                                    class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TRAJETÓRIA ACADÊMICA E PROFISSIONAL (TIMELINE) ================= -->
+        <section id="experiencia" class="section timeline-section bg-alternado">
+            <div class="container observe-fade-up">
+                <div class="section-header">
+                    <h2>Trajetória e Experiência</h2>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="central-timeline">
+                    <!-- Esquerda: Formação Acadêmica -->
+                    <div class="timeline-row left-side">
+                        <div class="timeline-dot-central"></div>
+                        <div class="timeline-card clickable-modal" data-modal="modal-exp-univasf">
+                            <div class="timeline-logo">
+                                <img src="img/Experiências/logo-faculdade.png" alt="UNIVASF Logo"
+                                    onerror="this.style.display='none';">
+                            </div>
+                            <div class="timeline-content">
+                                <span class="timeline-date">2022 — Atualmente</span>
+                                <h4>Bacharelado em Engenharia Civil</h4>
+                                <h5>UNIVASF</h5>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direita: Histórico Profissional 1 -->
+                    <div class="timeline-row right-side">
+                        <div class="timeline-dot-central"></div>
+                        <div class="timeline-card clickable-modal" data-modal="modal-exp-casaalta">
+                            <div class="timeline-content">
+                                <span class="timeline-date">Jul. 2025 — Atualmente</span>
+                                <h4>Engenheiro Civil Sênior (Estágio)</h4>
+                                <h5>Condomínio Jardim Casa Alta</h5>
+                            </div>
+                            <div class="timeline-logo">
+                                <img src="img/Experiências/casaalta.png" alt="Casa Alta"
+                                    onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direita: Histórico Profissional 2 -->
+                    <div class="timeline-row right-side">
+                        <div class="timeline-dot-central"></div>
+                        <div class="timeline-card clickable-modal" data-modal="modal-exp-engecol">
+                            <div class="timeline-content">
+                                <span class="timeline-date">Jan. 2025 — Jul. 2025</span>
+                                <h4>Estagiário de Engenharia Civil</h4>
+                                <h5>Engecol Engenharia</h5>
+                            </div>
+                            <div class="timeline-logo">
+                                <img src="img/Experiências/engecol.png" alt="Engecol Logo"
+                                    onerror="this.style.display='none';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Direita: Histórico Profissional 3 -->
+                    <div class="timeline-row right-side">
+                        <div class="timeline-dot-central"></div>
+                        <div class="timeline-card clickable-modal" data-modal="modal-exp-concretize">
+                            <div class="timeline-content">
+                                <span class="timeline-date">Jan. 2023 — Nov. 2025</span>
                                 <h4>Coordenador de Projetos</h4>
-                                <p class="institution">Concretize Júnior</p>
-                                <span class="see-more">Ver detalhes +</span>
+                                <h5>Concretize Júnior</h5>
                             </div>
-                        </div>
-                    </div>
-                
-                <div class="horizontal-timeline centered-timeline">
-                    <div class="timeline-item clickable"
-                         data-title="Estagiario de Engenharia Civil"
-                         data-subtitle="Engecol Engenharia | Jan.25 - Jul.25"
-                         data-details="Atuei no planejamento do empreendimento Jardim Casa Alta, situado na Orla de Petrolina (PE), onde fui responsável pelo acompanhamento técnico e auxílio na gestão operacional das obras. Minhas atividades concentraram-se na elaboração de orçamentos e composições unitárias para controle de custos, bem como na fiscalização da rotina de pré-obra, garantindo o registro fiel da execução e o suporte ao planejamento do projeto antes de iniciar de fato o canteiro.">
-                         
-                        <div class="item-content">
-                            <div class="internal-logo">
-                                <img src="img/Experiências/engecol.png" alt="Studio" onerror="this.style.display='none';">
-                            </div>
-                            <div class="text-area">
-                                <span class="resume-date">2025</span>
-                                <h4>Estágio em Engenharia</h4>
-                                <p class="institution">Engecol Engenharia</p>
-                                <span class="see-more">Ver detalhes +</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="timeline-item clickable" 
-                         data-title="Engenheiro Civil Sênior" 
-                         data-subtitle="Condomínio Jardim Casa Alta | Jul.2025 - Atualmente"
-                         data-details="Atuo no empreendimento Condomínio Jardim Casa Alta, onde estou responsável pelo acompanhamento técnico e auxílio na gestão operacional das obras. Minhas atividades concentraram-se na elaboração de orçamentos e composições unitárias para controle de custos, fiscalização da rotina de campo através do preenchimento rigoroso do diário de obra e elaboração de levantamentos de quantitativos e materiais.">
-                        
-                        <div class="item-content">
-                            <div class="internal-logo">
-                                <img src="img/Experiências/casaalta.png" alt="Const" onerror="this.style.display='none';">
-                            </div>
-                            <div class="text-area">
-                                <span class="resume-date">2025 - Atualmente</span>
-                                <h4>Estágio em Engenharia</h4>
-                                <p class="institution">Cond. Jardim Casa Alta</p>
-                                <span class="see-more">Ver detalhes +</span>
+                            <div class="timeline-logo">
+                                <img src="img/Experiências/concretize.png" alt="Concretize Logo"
+                                    onerror="this.style.display='none';">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </section>
 
-        </div> </div>
-</section>
-    
-    <section id="habilidades">
-    <div class="container">
-        <h2 class="section-title hidden">Habilidades Técnicas</h2>
-        <div class="skills-container hidden">
-            
-            <div class="skill-card clickable"
-                 data-title="AutoCAD 2D"
-                 data-subtitle="Software CAD | Nível Intermediário"
-                 data-details="Desenvolvi expertise prática em AutoCAD durante minha atuação no empreendimento Jardim Casa Alta, utilizando o software como ferramenta central para a leitura técnica de projetos e levantamentos precisos de quantitativos. Minha rotina envolvia a análise crítica dos desenhos digitais para identificar incompatibilidades antecipadamente, permitindo o desenvolvimento de soluções construtivas eficientes que eram diretamente transferidas e aplicadas na execução do canteiro de obras."
-                 data-images="img/Habilidades/Skills/autocad1.png, img/Habilidades/Skills/autocad2.png, img/Habilidades/Skills/autocad3.png">
-                
-                <div class="internal-logo" style="height: 60px; margin-bottom: 15px;">
-                    <img src="img/Habilidades/Logos/autocad.jpg" alt="AutoCAD"> 
+        <!-- ================= CONTATO E FOOTER ================= -->
+        <section id="contato" class="section contact-section">
+            <div class="container observe-fade-up">
+                <div class="contact-wrapper">
+                    <h2>Entre em Contato</h2>
+                    <p class="contact-desc">Discussões sobre projetos, engenharia de custos ou planejamento construtivo.
+                        Estou sempre aberto a novas oportunidades profissionais.</p>
+
+                    <div class="contact-buttons-row">
+                        <a href="mailto:jackson.desouz@outlook.com" class="btn-primary" aria-label="E-mail"><i
+                                class="far fa-envelope"></i> E-mail Corporativo</a>
+                        <a href="https://wa.me/5587981632144" target="_blank" class="btn-secondary"
+                            aria-label="WhatsApp"><i class="fab fa-whatsapp"></i> WhatsApp Direct</a>
+                    </div>
+
+                    <div class="social-links-footer">
+                        <a href="https://www.linkedin.com/in/jacksondesouz" target="_blank" aria-label="LinkedIn"><i
+                                class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/jackson.souz_/" target="_blank" aria-label="Instagram"><i
+                                class="fab fa-instagram"></i></a>
+                    </div>
                 </div>
-                
-                <h4>AutoCAD</h4>
             </div>
+        </section>
+    </main>
 
-            <div class="skill-card clickable"
-                 data-title="Revit & BIM"
-                 data-subtitle="Modelagem 3D | Nível Intermediário"
-                 data-details="Durante a graduação, especializei-me no domínio do Revit, reconhecendo-o como uma ferramenta avançada essencial para a engenharia moderna e a metodologia BIM. Minha capacitação técnica no software teve foco prioritário em projetos Elétricos, onde consolidei minha maior expertise, estendendo-se também ao desenvolvimento completo de projetos Hidrossanitários e de Edificações, utilizando a modelagem paramétrica para garantir eficiência, integração e alta precisão técnica nas soluções projetadas."
-                 data-images="img/Habilidades/Skills/revitskill.png">
-                
-                <div class="internal-logo" style="height: 60px; margin-bottom: 15px;">
-                    <img src="img/Habilidades/Logos/revit.png" alt="Revit">
-                </div>
-                
-                <h4>Revit / BIM</h4>
-            </div>
-
-            <div class="skill-card clickable"
-                 data-title="CypeCad"
-                 data-subtitle="Cálculo Estrutural"
-                 data-details="Utilizei o software CYPECAD durante a graduação como ferramenta prática para consolidar os conceitos teóricos de Concreto Armado, iniciando a modelagem e o dimensionamento estrutural de um edifício multifamiliar de 5 pavimentos. Este projeto de alta complexidade serviu como base fundamental para meu aprendizado em análise estrutural e permanece como um estudo de caso ativo em meu portfólio, com o objetivo definido de concluí-lo à medida que aprofundo minha expertise técnica e maturidade profissional na ferramenta."
-                 data-images="img/Habilidades/Skills/cype1.png, img/Habilidades/Skills/cype2.png, img/Habilidades/Skills/cype3.png">
-                
-                <div class="internal-logo" style="height: 60px; margin-bottom: 15px;">
-                    <img src="img/Habilidades/Logos/cypecad.png" alt="TQS">
-                </div>
-                
-                <h4>CypeCAD</h4>
-            </div>
-
-            <div class="skill-card clickable"
-                 data-title="MS Project e Excel"
-                 data-subtitle="Planejamento e Orçamentos"
-                 data-details="No âmbito de gestão e planejamento, utilizo o MS Project para a estruturação de cronogramas operacionais divididos em blocos, permitindo um controle preciso do avanço de cada etapa construtiva. Alinho essa competência ao domínio do Excel, ferramenta que aplico na engenharia de custos para a elaboração de orçamentos detalhados e o desenvolvimento de composições unitárias, assegurando uma visão integrada entre o planejamento físico e a viabilidade financeira das obras."
-                 data-images="img/Habilidades/Skills/orc.png, img/Habilidades/Skills/plan.png">
-                
-                <div class="internal-logo" style="height: 60px; margin-bottom: 15px;">
-                    <img src="img/Habilidades/Logos/excelms.png" alt="Project">
-                </div>
-                
-                <h4>MS Project e Excel</h4>
-            </div>
-
-            <div class="skill-card clickable"
-                 data-title="Civil3D"
-                 data-subtitle="Projetos de Rodovias e Infraestrutura"
-                 data-details="Atualmente, tenho direcionado minha especialização para o Civil 3D, ferramenta onde desenvolvi um projeto de grande relevância estratégica: o traçado geométrico de uma rodovia de 48 km conectando Casa Nova ao KM 25 (sentido Afrânio). Este projeto foi concebido com foco no desenvolvimento econômico regional e, principalmente, na logística de transporte para o setor eólico. Com essa base consolidada em infraestrutura viária, meu objetivo de curto prazo é expandir o domínio da ferramenta para atuar também com projetos de loteamento e site design."
-                 data-images="img/Projetos/civil1.png, img/Projetos/civil2.png, img/Projetos/civil3.png">
-                
-                <div class="internal-logo" style="height: 60px; margin-bottom: 15px;">
-                    <img src="img/Habilidades/Logos/civil3d.svg" alt="Gestão">
-                </div>
-                
-                <h4>Civil3D</h4>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    <section id="projetos">
-    <div class="container">
-        <h2 class="section-title hidden">Projetos Recentes</h2>
-        
-        <div class="projects-grid hidden">
-            
-            <div class="project-card clickable"
-                 data-title="PROJETO RODOVIÁRIO CASA NOVA - PETROLINA"
-                 data-subtitle="Projeto Desenvolvido durante a disciplina de Estradas | 2025"
-                 data-details="Durante o desenvolvimento da disciplina de Estradas, elaborei o projeto geométrico de uma rodovia com 48 km de extensão, conectando o município de Casa Nova (BA) ao entroncamento do KM25 em Petrolina (PE). <br> <br> O traçado foi concebido estrategicamente para impulsionar o desenvolvimento econômico do Vale do São Francisco, com geometria adaptada não apenas para o fluxo convencional, mas também para a logística de cargas especiais, facilitando o transporte de componentes para parques eólicos, um setor em plena expansão na região. Atualmente, o projeto encontra-se na etapa de refinamento de greide e otimização de volumes de terraplenagem. Contudo, a finalização das pranchas detalhadas e a geração dos relatórios finais estão temporariamente suspensas devido à alta demanda de processamento computacional exigida pela complexidade e extensão da modelagem BIM frente ao hardware disponível no momento."
-                 data-images="img/Projetos/civil1.png,img/Projetos/civil2.png, img/Projetos/civil3.png"> <div class="project-cover">
-                    <img src="img/Projetos/civil2.png" alt="Projeto Rodoviário">
-                </div>
-                
-                <h4>Projeto Rodoviário em Civil 3D</h4>
-            </div>
-
-            <div class="project-card clickable"
-                 data-title="PROJETO ELÉTRICO DE BAIXA TENSÃO"
-                 data-subtitle="Projeto Desenvolvido para um cliente"
-                 data-details="Elaborei o projeto de instalações elétricas de baixa tensão em conformidade com a NBR 5410, abrangendo desde a modelagem, plantas elétricas, dimensionamento de eletrodutos e cargas, equilíbrio de fases até o detalhamento do quadro e dispositivos de proteção. A aplicação da metodologia BIM foi central neste processo, permitindo não apenas a modelagem tridimensional precisa de eletrodutos e quadros, mas principalmente a compatibilização espacial com as disciplinas de arquitetura e estrutura. Essa abordagem possibilitou a identificação antecipada de interferências físicas e a extração automática de quantitativos de materiais com alta fidelidade, garantindo um projeto executável, seguro e eficiente."
-                 data-images="img/Projetos/elet1.png,img/Projetos/elet2.png, img/Projetos/elet3.png, img/Projetos/elet4.png">
-                
-                <div class="project-cover">
-                    <img src="img/Projetos/elet1.png" alt="Projeto Elétrico">
-                </div>
-                
-                <h4>Projeto Elétrico NBR-5410</h4>
-            </div>
-
-            <div class="project-card clickable"
-                 data-title="CÉLULA HIDROSSANITÁRIA DE UMA RESIDÊNCIA UNIFAMILIAR"
-                 data-subtitle="Projeto Desenvolvido durante um curso de Instalações Hidrossanitárias | 2025"
-                 data-details="Desenvolvimento de projeto hidrossanitário completo para residência unifamiliar de dois pavimentos, realizado como estudo de caso prático durante uma capacitação de projeto. O escopo abrangeu o dimensionamento e detalhamento dos sistemas de água fria e esgoto sanitário, incluindo a implementação de uma bomba pressurizadora de 9mca para garantia de desempenho hidráulico nos ambientes mais afastados. A entrega técnica contemplou plantas baixas, cortes, perspectivas isométricas detalhadas por ambiente, além de detalhamentos específicos para o barrilete da caixa d’água, cavalete do hidrômetro e posicionamento estratégico de registros. O projeto foi finalizado com o levantamento quantitativo de materiais e o memorial de dimensionamento, seguindo as normas vigentes (NBR 5626:2020, NBR 8160:1999 e NBR 10844) e foco na eficiência e viabilidade executiva da instalação."
-                 data-images="img/Projetos/hidro.png, img/Projetos/hidro (2).png, img/Projetos/hidro (3).png, img/Projetos/hidro (4).png, img/Projetos/hidro (5).png, img/Projetos/hidro (6).png, img/Projetos/hidro (8).png, img/Projetos/hidro (9).png, img/Projetos/hidro (10).png, img/Projetos/hidro (11).png, img/Projetos/hidro (12).png, img/Projetos/hidro (13).png" >
-                
-                <div class="project-cover">
-                    <img src="img/Projetos/hidro.png" alt="Projeto Hidrossanitário">
-                </div>
-                
-                <h4>Projeto Hidrossanitário</h4>
-            </div>
-
-            <div class="project-card clickable"
-                 data-title="COORDENAÇÃO DE PROJETOS DE ENGENHARIA"
-                 data-subtitle="Projeto Desenvolvido para um cliente"
-                 data-details="Neste projeto, atuei na coordenação de equipes multidisciplinares, gerenciando o desenvolvimento simultâneo das disciplinas de edificações, instalações elétricas, hidrossanitárias e orçamentação. Minha responsabilidade abrangeu desde a etapa inicial de briefing e conexão direta com o cliente — garantindo o alinhamento de expectativas e o suporte técnico contínuo — até a gestão estratégica de prazos e o controle de fluxo de trabalho dos projetistas. Através da supervisão do progresso, do planejamento no Microsoft Project e da compatibilização entre as áreas, assegurei a organização de toda a documentação técnica, resultando em uma entrega final precisa, no prazo e rigorosamente fiel aos requisitos estabelecidos."
-                 data-images="img/Projetos/coord.png, img/Projetos/coord2.png" >
-                
-                <div class="project-cover">
-                    <img src="img/Projetos/coord.png" alt="Coordenação de Projetos">
-                </div>
-                
-                <h4>Coordenação de Projetos de Engenharia</h4>
-            </div>
-            
-            <div class="project-card clickable"
-                 data-title="PROJETOS"
-                 data-subtitle="Em breve"
-                 data-details="Levantar, compatibilizar e enviar para o site é um trabalho que deve ser feito com muito cuidado e atenção aos detalhes. Em breve, mais projetos serão adicionados ao portfólio, destacando a diversidade e a complexidade dos trabalhos realizados, sempre com foco na excelência técnica e na inovação construtiva."
-                 data-images="img/Projetos/arq2.png">
-                
-                <div class="project-cover">
-                    <img src="img/Projetos/arq1.png">
-                </div>
-                
-                <h4>Mais Projetos em Breve</h4>
-            </div>
-
-            </div>
-    </div>
-</section>
-
-    <footer>
-        <div class="container">
-            <div class="social-links">
-                <a href="https://www.linkedin.com/in/jacksondesouz" target="_blank"><i class="fab fa-linkedin"></i></a>
-                <a href="https://www.instagram.com/jackson.souz_/" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="mailto:jackson.desouz@outlook.com"><i class="far fa-envelope"></i></a>
-            </div>
+    <!-- Rodapé Minimalista -->
+    <footer class="site-footer">
+        <div class="container footer-box">
             <p>&copy; 2026 Jackson Santana. Todos os direitos reservados.</p>
         </div>
     </footer>
 
-    <div id="resume-modal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal">&times;</span>
-            
-            <h3 id="modal-title">Título do Cargo</h3>
-            <p id="modal-subtitle" class="modal-subtitle">Empresa | Data</p>
-            
-            <div id="modal-carousel-container" class="modal-carousel-container">
-                <button id="modal-prev-btn" class="modal-nav-btn prev"><i class="fas fa-chevron-left"></i></button>
-                <div class="modal-carousel-track" id="modal-track">
-                    </div>
-                <button id="modal-next-btn" class="modal-nav-btn next"><i class="fas fa-chevron-right"></i></button>
-                
-                <div class="zoom-indicator">
-                    <i class="fas fa-search-plus"></i>
-                </div>
-                </div>
 
-            <div id="modal-body" class="modal-body">
+    <!-- ================= MODAL CENTRALIZADO COM CARROSSEL ================= -->
+    <div id="general-modal" class="modal-overlay">
+        <div class="modal-box">
+            <!-- Botão Fechar no cantinho superior, bem elegante -->
+            <button class="modal-close-icon"><i class="fas fa-times"></i></button>
+
+            <!-- Cabecalho: Textos de um lado, Logo opcional no outro -->
+            <div class="modal-header-info">
+                <div class="header-titles">
+                    <h3 id="modal-main-title">Título AQUI</h3>
+                    <h4 id="modal-subtitle">Subtítulo AQUI</h4>
                 </div>
+                <div class="header-logo" id="modal-header-logo-container" style="display: none;">
+                    <img id="modal-header-logo" src="" alt="Logo">
+                </div>
+            </div>
+
+            <!-- Área Dinâmica para Imagens (Carrossel) -->
+            <div class="modal-carousel-area" id="modal-carousel-area" style="display: none;">
+                <button class="carousel-arrow prev" id="carousel-prev" aria-label="Imagem Anterior"><i
+                        class="fas fa-chevron-left"></i></button>
+                <div class="carousel-image-container">
+                    <button class="btn-fullscreen" id="btn-fullscreen" aria-label="Abrir em Tela Cheia"><i class="fas fa-search-plus"></i></button>
+                    <img id="carousel-active-image" src="" alt="Imagem do Projeto">
+                    <div class="carousel-indicators" id="carousel-indicators"></div>
+                </div>
+                <button class="carousel-arrow next" id="carousel-next" aria-label="Próxima Imagem"><i
+                        class="fas fa-chevron-right"></i></button>
+            </div>
+
+            <!-- Descritivo Textual -->
+            <div class="modal-text-content" id="modal-desc">
+                Conteúdo de texto virá para cá através do JS.
+            </div>
+
         </div>
     </div>
 
-            <div id="modal-body" class="modal-body">
-                </div>
+
+    <!-- ================= BASE DE DADOS (HIDDEN) ================= 
+         Aqui guardamos em blocos todos os textos e caminhos de imagens (, separados) -->
+    <div id="modal-data-store" style="display: none;">
+
+        <!-- === PROJETOS (Possuem imagens) === -->
+        <div id="modal-proj-rodoviario" data-title="PROJETO RODOVIÁRIO CASA NOVA"
+            data-subtitle="Disciplina de Estradas | 2025"
+            data-images="img/Projetos/civil1.png,img/Projetos/civil2.png,img/Projetos/civil3.png">
+            <p>Durante o desenvolvimento da disciplina de Estradas, elaborei o projeto geométrico de uma rodovia com 48
+                km de extensão, conectando o município de Casa Nova (BA) ao entroncamento do KM25 em Petrolina (PE).</p>
+            <p>O traçado foi concebido estrategicamente para impulsionar o desenvolvimento econômico do Vale do São
+                Francisco, com geometria adaptada não apenas para o fluxo convencional, mas também para a logística de
+                cargas especiais, facilitando o transporte de componentes para parques eólicos. Encontra-se em etapa de
+                refinamento de greide e otimização de volumes de terraplenagem em software.</p>
         </div>
+
+        <div id="modal-proj-eletrico" data-title="PROJETO ELÉTRICO DE BAIXA TENSÃO"
+            data-subtitle="Projeto Desenvolvido para cliente"
+            data-images="img/Projetos/elet1.png,img/Projetos/elet2.png,img/Projetos/elet3.png,img/Projetos/elet4.png">
+            <p>Elaborei o projeto de instalações elétricas de baixa tensão em conformidade com a NBR 5410, abrangendo a
+                modelagem, plantas elétricas, dimensionamento de eletrodutos e cargas, equilíbrio de fases até o
+                detalhamento do quadro e dispositivos de proteção.</p>
+            <p>A aplicação da metodologia BIM foi central neste processo, permitindo modelagem tridimensional precisa de
+                eletrodutos e compatibilização espacial com as disciplinas de arquitetura e estrutura. Identificação
+                antecipada de interferências e extração automática de quantitativos.</p>
+        </div>
+
+        <div id="modal-proj-hidro" data-title="CÉLULA HIDROSSANITÁRIA DE RESIDÊNCIA"
+            data-subtitle="Capacitação Prática | 2025"
+            data-images="img/Projetos/hidro.png,img/Projetos/hidro (2).png,img/Projetos/hidro (3).png,img/Projetos/hidro (4).png,img/Projetos/hidro (5).png,img/Projetos/hidro (6).png,img/Projetos/hidro (8).png,img/Projetos/hidro (9).png,img/Projetos/hidro (10).png,img/Projetos/hidro (11).png,img/Projetos/hidro (12).png,img/Projetos/hidro (13).png">
+            <p>Desenvolvimento completo para residência unifamiliar de dois pavimentos. O escopo abrangeu o
+                dimensionamento e detalhamento de água fria e esgoto sanitário, incluindo bomba pressurizadora (9mca)
+                para garantia de desempenho.</p>
+            <p>Plantas baixas, cortes, perspectivas isométricas detalhadas por ambiente, detalhamento para o barrilete e
+                cavalete do hidrômetro (NBR 5626:2020, NBR 8160:1999 e NBR 10844). Viabilidade e eficiência executiva
+                asseguradas com documentação precisa e levantamento quantitativo confiável.</p>
+        </div>
+
+        <div id="modal-proj-coord" data-title="COORDENAÇÃO MULTIDISCIPLINAR"
+            data-subtitle="Gestão Simultânea e Entregas Técnicas"
+            data-images="img/Projetos/coord.png,img/Projetos/coord2.png">
+            <p>Neste projeto, atuei na coordenação de equipes, gerenciando simultaneamente o desenvolvimento de modelos
+                em edificações, instalações elétricas, hidrossanitárias e as matrizes de orçamentação.</p>
+            <p>Desde a etapa inicial de briefing e conexão com o cliente, passando pela gestão de prazos, controle de
+                fluxo e verificação de colisões (Clash Detection), com apoio intensivo do Microsoft Project. Entrega
+                final precisa e fidedigna ao contrato estabelecido.</p>
+        </div>
+
+
+        <!-- === HABILIDADES (Possuem imagens em Habilidades/Skills) === -->
+        <div id="modal-skill-autocad" data-title="AUTOCAD 2D NA ENGENHARIA"
+            data-subtitle="Ferramenta CAD | Nível Intermediário"
+            data-images="img/Habilidades/Skills/autocad1.png,img/Habilidades/Skills/autocad2.png,img/Habilidades/Skills/autocad3.png">
+            <p>Expertise prática em AutoCAD durante atuação no empreendimento Jardim Casa Alta. Utilização intensiva do
+                software como ferramenta central para a leitura técnica de projetos operacionais e extração fiel e
+                precisa de quantitativos executivos.</p>
+            <p>Abaixo seguem telas dos mapeamentos e pranchas processadas durante as minerações e limpezas da plataforma
+                AutoCAD.</p>
+        </div>
+
+        <div id="modal-skill-revit" data-title="REVIT E MODELAGEM BIM"
+            data-subtitle="Software Central Mecânico (MEP) | Nível Intermediário"
+            data-images="img/Habilidades/Skills/revitskill.png">
+            <p>Durante a graduação, especializei-me no domínio do Revit, essencial para a metodologia BIM. Tenho maior
+                expertise na elaboração de sistemas e projetos Elétricos paramétricos e Hidrossanitários com extração
+                quantitativa completa.</p>
+            <p>Modelagens que evitam problemas construtivos durante as obras pelo mapeamento antecipado das locações
+                prediais e das prumadas prediais de esgoto e força.</p>
+        </div>
+
+        <div id="modal-skill-cype" data-title="CALCULO NO TYPECAD" data-subtitle="Cálculo e Dimensionamento Estrutural"
+            data-images="img/Habilidades/Skills/cype1.png,img/Habilidades/Skills/cype2.png,img/Habilidades/Skills/cype3.png">
+            <p>Aplicações consolidadas no software CypeCAD para amparar a teoria de Concreto Armado. Como case prático,
+                iniciei a modelagem e dimensionamento estrutural de um edifício multifamiliar (5 pavimentos), refinando
+                minha visão sobre carregamentos.</p>
+            <p>Avaliação atenciosa das lajes, dimensionamento da armação de reforço de pilar, viga e cálculo do
+                comportamento sismográfico quando necessário.</p>
+        </div>
+
+        <div id="modal-skill-planner" data-title="MS PROJECT INTEGRADO AO EXCEL"
+            data-subtitle="Composição de Equipes, Orçamentos e Planejamento Prático"
+            data-images="img/Habilidades/Skills/orc.png,img/Habilidades/Skills/plan.png">
+            <p>A união dessas bases é meu alicerce. O Excel como potente sistema matemático de Engenharia de Custos,
+                operando de mãos dadas com SINAPI ou TCPO. Levantamento exato de horas/homem contra materiais em
+                prancha.</p>
+            <p>Por sua vez MS Project divide a obra por ETAPAS e garante controle linear de desvios através de
+                elaborações em rede gráfica/Diagrama de Gantt consolidada, mantendo o controle total da produtividade in
+                loco.</p>
+        </div>
+
+        <div id="modal-skill-civil" data-title="CIVIL3D – ESTRADAS E RODOVIAS"
+            data-subtitle="Topografia e Infraestrutura Viária Civil"
+            data-images="img/Projetos/civil1.png,img/Projetos/civil2.png,img/Projetos/civil3.png">
+            <p>Uso avançado da plataforma Autodesk Civil 3D no tratamento de superfície, modelagem digital do terreno
+                (MDT) e simulação volumétrica de cortes/aterros (Terraplenagem).</p>
+            <p>Através do projeto georreferenciado, elaboro traçados precisos obedecendo as normativas federais (DNIT)
+                de curvas com superelevação, superlargura pontual e as rampas longas do greide perante as restrições
+                logísticas de caminhões com supercargas eólicas.</p>
+        </div>
+
+
+        <!-- === TRAJETÓRIAS (Não possui carrossel de imagens, apenas texto e info institucional) === -->
+        <!-- === TRAJETÓRIAS E EXPS (Possuem campos data-logo) === -->
+        <div id="modal-exp-univasf" data-title="BACHARELADO EM ENGENHARIA CIVIL"
+            data-subtitle="UNIVASF | 2022 - Atualmente"
+            data-logo="img/Experiências/logo-faculdade.png">
+            <p>Graduando o 9º período pela Universidade Federal do Vale do São Francisco (UNIVASF), com vasta carga
+                teórica e laboratorial no Vale. A universidade se tornou uma base sólida que não somente focou no
+                tecnicismo extremo dos processos, mas na gestão integral de times de construção e no pragmatismo que
+                pavimenta resolutividade na lida diária da rotina operária num canteiro estruturado do zero.</p>
+        </div>
+
+        <div id="modal-exp-casaalta" data-title="ENGENHEIRO CIVIL SÊNIOR (ESTÁGIO AVANÇADO)"
+            data-subtitle="Condomínio Jardim Casa Alta | Jul. 2025 - Atualmente"
+            data-logo="img/Experiências/casaalta.png">
+            <p>Posição operacional forte envolvendo levantamento direto em campo. Atividades concentradas na elaboração
+                de orçamentos precisos do dia-a-dia da obra e composições unitárias para aferição de custos da etapa
+                corrente.</p>
+            <p>Comando da rotina e registro fiel através do preenchimento minucioso no diário de obras, fiscalização
+                construtiva dos terceirizados e verificação física junto do estagiário/operários. Elaboro planilhas de
+                quantitativas rápidas e efetivas alinhadas com a base técnica.</p>
+        </div>
+
+        <div id="modal-exp-engecol" data-title="ESTÁGIO TÉCNICO CIVIL"
+            data-subtitle="Engecol Engenharia | Jan. 2025 - Jul. 2025"
+            data-logo="img/Experiências/engecol.png">
+            <p>Nesta oportunidade foquei pesadamente no planejamento de suporte visando estruturar a largada inicial do
+                empreendimento Jardim Casa Alta base (Pré-Obra). Acompanhamentos técnicos profundos sob o mestre-gestor.
+            </p>
+            <p>Construí bases orçamentárias pesadas, garantindo registros fotográficos exatos do ponto original do
+                ambiente a ser intervencionado, atuando com disciplina organizacional dentro do escritório da obra,
+                preparando terreno perfeitamente com controle integral da licitação de materiais para as etapas
+                pioneiras.</p>
+        </div>
+
+        <div id="modal-exp-concretize" data-title="COORDENADOR GERAL TÉCNICO DE PROJETOS"
+            data-subtitle="Concretize Júnior | Jan. 2023 - Nov. 2025"
+            data-logo="img/Experiências/concretize.png">
+            <p>Trajetória marcante. Liderança em Empresa Júnior que reflete atuação profissional real multidisciplinar
+                focada no relacionamento constante com subcoordenadores.</p>
+            <p>Fui o responsável primário por coordenar o ciclo vital integral: negociação técnica junto dos clientes,
+                precificação de entregáveis complexos, dimensionamento do esquadrão necessário para rodar o trabalho,
+                gestão incisiva do tempo através de métricas internas e o refinamento máximo da qualidade das entregas
+                gráficas na documentação de obra final para aprovação local. Gestão em alto padrão num período formativo
+                imersivo.</p>
+        </div>
+
     </div>
+
+    <!-- Interface Visão Tela Cheia (Lightbox) -->
+    <div id="lightbox-overlay" class="lightbox-overlay">
+        <button class="lightbox-close-icon" id="lightbox-close" aria-label="Fechar Tela Cheia"><i class="fas fa-times"></i></button>
+        <button class="lightbox-arrow prev" id="lightbox-prev" aria-label="Imagem Anterior"><i class="fas fa-chevron-left"></i></button>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Imagem em Tela Cheia">
+        </div>
+        <button class="lightbox-arrow next" id="lightbox-next" aria-label="Próxima Imagem"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Scripts (Lógica do Modal c/ Carrossel) -->
     <script src="script.js"></script>
-
-    <div id="fullscreen-overlay">
-    <span id="close-fullscreen">&times;</span>
-    
-    <button id="fs-prev-btn" class="fs-nav-btn"><i class="fas fa-chevron-left"></i></button>
-    <button id="fs-next-btn" class="fs-nav-btn"><i class="fas fa-chevron-right"></i></button>
-    
-    <img id="fullscreen-img" src="" alt="Imagem em Tela Cheia">
-</div>
-
 </body>
+
 </html>

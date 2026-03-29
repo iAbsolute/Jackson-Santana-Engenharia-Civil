@@ -1,15 +1,34 @@
-/* --- CSS: Variáveis e Reset --- */
+/* =========================================================================
+   STYLE.CSS - TEMA MINIMALISTA DE ENGENHARIA CIVIL (Foco em Solidez)
+   ========================================================================= */
+
+/* --- 1. VARIÁVEIS DO TEMA E CORES --- */
 :root {
-    --bg-color: #ffffff;
-    --bg-alt: #f8f9fa; /* Cinza muito claro para seções alternadas */
-    --text-main: #2c2c2c;
-    --text-light: #666666;
-    --accent: #2c3e50; /* Um azul/cinza concreto para destaque */
-    --border: #e0e0e0;
-    --font-main: 'Inter', sans-serif;
-    --transition: all 0.3s ease;
+    /* Cores de Fundo: Tons de Grafite/Asfalto (Sóbrios, elegantes e limpos) */
+    --bg-primary: #121212;   /* Fundo Principal - Grafite Escuro */
+    --bg-secondary: #1a1a1a; /* Fundo Secundário para mesclar seções */
+    --bg-card: #222222;      /* Fundo para os cartões (Projetos/Habilidades) */
+    
+    /* Textos: Contrastes Suaves para leitura técnica prolongada */
+    --text-main: #e8e8e8;    /* Branco Fosco para Títulos e Destaques */
+    --text-muted: #9e9e9e;   /* Cinza Claro para parágrafos */
+    
+    /* Destaque (Accent): Cobre / Ouro Velho (Sofisticação/Arquitetural) */
+    --accent-color: #c98e4d; /* Ouro Velho/Cobre Brilhante */
+    --accent-hover: #e0a35e; /* Hover sutilmente mais claro */
+    
+    /* Tipografia: Foco em Legibilidade e Formalidade */
+    --font-heading: 'Roboto', sans-serif;
+    --font-body: 'Inter', sans-serif;
+    
+    /* Layout Utilitários */
+    --transition-smooth: all 0.35s ease-in-out;
+    --border-radius: 4px; /* Raio bem pequeno, imitando cantos vivos construtivos */
+    --border-light: 1px solid rgba(255, 255, 255, 0.08); /* Linha fina de marcação */
 }
 
+
+/* --- 2. RESETS E FORMATAÇÃO BÁSICA --- */
 * {
     margin: 0;
     padding: 0;
@@ -17,1231 +36,1116 @@
 }
 
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth; /* Rolagem nativa suave entre ancoras */
 }
 
-body {
-    font-family: var(--font-main);
-    background-color: var(--bg-color);
-    color: var(--text-main); /* Cor do nome Jackson Santana */
+body.engineering-theme {
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: var(--font-body);
     line-height: 1.6;
     overflow-x: hidden;
 }
 
-a { text-decoration: none; color: inherit; }
-ul { list-style: none; }
-
-/* --- Elementos Globais --- */
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 20px;
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
 }
 
-/* --- TÍTULOS DE SEÇÃO (Estilo Etiqueta Cinza) --- */
-.section-title {
-    /* 1. Centralização (O pulo do gato para centralizar sem mexer no pai) */
-    display: table; 
-    margin: 0 auto 50px auto; /* "auto" nas laterais centraliza o bloco */
-    
-    /* 2. Visual de Etiqueta (Igual Formação/Experiência) */
-    background-color: #000000; /* Cinza */
-    color: #fff;            /* Texto Branco */
-    padding: 8px 24px;      /* Espaço interno */
-    border-radius: 6px;     /* Bordas arredondadas */
-    
-    /* 3. Tipografia */
-    font-size: 1.3rem;
-    font-weight: 700;
+a {
+    color: var(--text-main);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+/* Espaçamentos de Sessão */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section {
+    padding: 100px 0;
+}
+
+.bg-alternado {
+    background-color: var(--bg-secondary);
+    border-top: var(--border-light);
+    border-bottom: var(--border-light);
+}
+
+/* Cabeçalho de Seções (Ex: "Sobre Mim", "Trajetória") */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-main);
+}
+
+.divider {
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 15px auto 0;
+}
+
+
+/* --- 3. BOTÕES (LINHAS RETAS E ELEGANTES) --- */
+.btn-primary, .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px 28px;
+    font-family: var(--font-heading);
+    font-weight: 500;
+    font-size: 0.95rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* Remove qualquer alinhamento de texto antigo que possa atrapalhar */
-    text-align: center;
+    cursor: pointer;
+    border-radius: var(--border-radius);
+    transition: var(--transition-smooth);
 }
 
-/* 4. REMOVE A LINHA LARANJA ANTIGA */
-.section-title::after {
-    display: none; /* ou content: none; */
+/* O Botão Primário é Dourado/Cobre Sólido */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: #111; /* Contraste forte no botão */
+    border: 1px solid var(--accent-color);
 }
 
-section {
-    padding: 80px 0;
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+    border-color: var(--accent-hover);
+    transform: translateY(-2px);
 }
 
-/* Ajuste para os ícones dentro dos novos Títulos Principais */
-.section-title i {
-    color: var(--orange-accent); /* Deixa o ícone laranja */
-    margin-right: 15px; /* Espaço entre o ícone e o texto */
+/* O Botão Secundário é Vazado c/ Borda Branca */
+.btn-secondary {
+    background-color: transparent;
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.4);
 }
 
-/* --- Animação de Scroll (Fade In) --- */
-.hidden {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 1.5s ease-out, transform 0.8s ease-out;
-}
-.show {
-    opacity: 1;
-    transform: translateY(0);
+.btn-secondary:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
-/* --- HEADER (MENU SUPERIOR) --- */
-#header {
-    /* GARANTE QUE FIQUE FIXO NO TOPO */
-    position: fixed !important; 
+
+/* --- 4. HEADER / NAVEGAÇÃO PRINCIPAL --- */
+.main-header {
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 9999; /* Fica na frente de tudo */
-    
-    /* COMEÇA ESCONDIDO (Jogado para cima) */
-    transform: translateY(-100%);
-    transition: transform 0.4s ease-in-out;
-    
-    /* VISUAL */
-    background: #fff;
-    border-color: var(--orange-accent); /* Borda fica laranja/iluminada */
-    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.048); /* Brilho laranja */
-    height: 60px; /* Altura fixa para não espremer */
-    
-    /* CENTRALIZAÇÃO DOS ITENS */
-    display: flex;
-    align-items: center; /* Alinha verticalmente */
+    z-index: 1000;
+    background-color: rgba(18, 18, 18, 0.95); /* Fundo quase sólido mas com levísima transparência pra não sufocar */
+    border-bottom: var(--border-light);
+    transition: padding 0.3s ease;
+    padding: 20px 0;
 }
 
-/* Quando rolar a tela, o JS adiciona essa classe e ele aparece */
-#header.header-visible {
-    transform: translateY(0);
+.main-header.scrolled {
+    padding: 10px 0;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Sombra elegante no scroll */
 }
 
-/* Ajuste do Container interno para separar Logo e Links */
-#header .container {
-    display: flex;
-    justify-content: space-between; /* Logo na esq, Menu na dir */
-    align-items: center;
-    width: 100%;
-}
-
-nav {
+.nav-container {
+    width: 90%;
+    max-width: 1300px;
+    margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
 }
 
 .logo {
-    font-size: 1.2rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
-    color: var(--text-main);
-}
-
-/* --- LINKS DO HEADER (Texto Simples) --- */
-
-.nav-links {
-    display: flex;
-    gap: 30px; /* Voltei o espaçamento original para ficar elegante */
-    align-items: center;
-}
-
-.nav-links a {
-    /* Tipografia */
-    font-size: 0.9rem;
+    font-size: 1.6rem;
     font-weight: 500;
-    color: #001F3D; /* Verde Morbido */
-    text-decoration: none;
-    
-    /* REMOVENDO TUDO QUE É DE BOTÃO */
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    padding: 0; 
-    
-    /* Transição suave apenas da COR */
-    transition: color 0.3s ease;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
 }
 
-/* HOVER (Ao passar o mouse) */
-.nav-links a:hover {
-    color: #A2D5C6; /* Apenas muda a cor para Laranja */
-    
-    /* Garante que não tenha movimento nenhum */
-    transform: none; 
-    box-shadow: none;
-}
-
-/* --- Hero Section --- */
-#home {
-    height: 100vh;
+.desktop-nav {
     display: flex;
     align-items: center;
-    justify-content: center;
-    text-align: center;
-    background: radial-gradient(circle at center, #fbfbfb 0%, #ffffff 100%);
+    gap: 30px;
 }
 
-.hero-content h1 {
-    font-size: 3.5rem;
-    font-weight: 700;
-    letter-spacing: -1px;
+.nav-link {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    position: relative;
+}
+
+.nav-link:hover, .nav-link.active {
+    color: var(--accent-color);
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after, .nav-link.active::after {
+    width: 100%;
+}
+
+.nav-cta {
+    padding: 8px 20px; /* Menor que os botões padrão */
+}
+
+.mobile-menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-main);
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+/* --- 5. HERO SECTION --- */
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 50px;
+    align-items: center;
+}
+
+.eyebrow-text {
+    display: block;
+    color: var(--accent-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: clamp(2.5rem, 4vw, 4rem);
+    font-weight: 300;
     margin-bottom: 10px;
-    color: #0D1164;
+    line-height: 1.2;
 }
 
-.hero-content p {
-    font-size: 1.2rem;
-    color: #0D1164;
+.sub-title {
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    color: var(--text-muted);
+    font-weight: 400;
     margin-bottom: 30px;
 }
 
-.btn {
-    display: inline-block;
-    padding: 12px 30px;
-    background-color: transparent;
-    border: 2px solid var(--text-main);
-    color: var(--text-main);
-    font-weight: 600;
-    transition: var(--transition);
+.hero-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    max-width: 500px;
+    margin-bottom: 40px;
+    line-height: 1.7;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 20px;
+}
+
+/* Fotografia Solta e Limpa */
+.profile-img-free {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    margin: 0 auto;
+    border-radius: var(--border-radius);
+    box-shadow: 20px 20px 0px var(--accent-color); /* Cópia fixa na cor de destaque */
+    transition: var(--transition-smooth);
+}
+
+
+
+
+/* --- 6. SOBRE MIM --- */
+.about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about-content p {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    text-align: justify;
+}
+
+.about-stats-container {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 40px;
+    padding-top: 40px;
+    border-top: var(--border-light);
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+}
+
+
+/* --- 7. COMPETÊNCIAS / HABILIDADES --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    background-color: var(--bg-card);
+    border: var(--border-light);
+    border-radius: var(--border-radius);
+    padding: 30px 20px;
+    text-align: center;
     cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.btn:hover {
-    background-color: var(--text-main);
-    color: #fff;
+.skill-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-/* --- SEÇÃO SOBRE MIM (Design Estilo Card) --- */
-#sobre {
-    /* 1. O Fundo Laranja */
-    background-color: #A2D5C6; /* Fundo Azul */
-    padding: 80px 0;
+.skill-icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-/* O Cartão Branco Flutuante */
-.about-card {
-    background-color: #fff;
-    display: flex; /* Coloca imagem e texto lado a lado */
-    width: 100%;
-    max-width: 1000px; /* Limita a largura para ficar elegante */
-    margin: 0 auto;
-    
-    /* Arredondamento e Sombra Profunda */
-    border-radius: 15px; /* Cantos levemente arredondados */
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15); /* Sombra forte para destacar do laranja */
-    overflow: hidden; /* Garante que a imagem não saia da borda */
+.skill-icon-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    filter: invert(0.8) sepia(1) hue-rotate(180deg) saturate(0%); /* Deixa num tom esbranquiçado uniforme */
+    transition: var(--transition-smooth);
 }
 
-/* --- LADO ESQUERDO: IMAGEM --- */
-.about-image-wrapper {
-    flex: 1; /* Ocupa metade do cartão */
-    min-height: 450px; /* Garante altura mínima */
-    position: relative;
+.skill-card:hover .skill-icon-wrapper img {
+    filter: none; /* Retorna as cores originais no hover */
 }
 
-.about-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Faz a foto preencher todo o espaço sem distorcer */
-    display: block;
+.skill-card h3 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: var(--text-main);
 }
 
-/* --- LADO DIREITO: TEXTO --- */
-.about-text-content {
-    flex: 1.2; /* Ocupa um pouco mais da metade */
-    padding: 60px 50px; /* Espaçamento interno generoso */
-    display: flex;
-    flex-direction: column;
-    justify-content: center; /* Centraliza o conteúdo verticalmente */
-    text-align: left;
-}
-
-/* A "Tag" Sobre mim */
-.about-tag {
-    background-color: #000000; /* Fundo Cinza */
-    color: #fff;
-    font-size: 0.8rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    padding: 5px 15px;
-    margin-bottom: 20px;
-    align-self: flex-start; /* Alinha na esquerda */
-    display: inline-block;
-    border-radius: 5px;
-}
-
-/* O Nome (Jackson Santana) */
-.about-text-content h2 {
-    font-size: 2.8rem; /* Fonte bem grande */
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #0D1164;
-    line-height: 1.1;
-}
-
-.about-text-content p {
-    color: #0D1164;
+.skill-cat {
+    color: var(--text-muted);
+    font-size: 0.85rem;
     margin-bottom: 15px;
-    font-size: 1rem;
-    line-height: 1.6;
     text-align: justify;
 }
 
-/* Área do Botão (Onde estava o "Subscribe") */
-.about-btn-area {
-    margin-top: 30px;
-    display: flex;
-    justify-content: center !important;
-    padding-top: 20px;
-}
-
-/* Responsividade (Para Celular) */
-@media (max-width: 768px) {
-    .about-card {
-        flex-direction: column; /* Coloca um embaixo do outro */
-        max-width: 90%;
-    }
-
-    .about-image-wrapper {
-        height: 300px; /* Altura fixa para a foto no celular */
-        flex: none;
-    }
-
-    .about-text-content {
-        padding: 40px 30px;
-    }
-
-    .about-text-content h2 {
-        font-size: 2rem;
-    }
-}
-
-/* --- SEÇÃO CURRÍCULO (Fundo Laranja + Único Cartão Branco) --- */
-#resume {
-    background-color: #A2D5C6; /* Fundo Azul */
-    padding: 80px 0;
-}
-
-/* O Grande Cartão Branco */
-.content-card {
-    background-color: #fff;
-    width: 100%;
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 60px 50px; /* Espaçamento interno generoso */
-    border-radius: 15px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-    
-    /* Layout interno */
-    display: flex;
-    flex-direction: column;
-}
-
-/* Container de cada seção interna (Formação e Experiência) */
-/* --- TÍTULOS ESTILO ETIQUETA (Igual "Sobre Mim") --- */
-/* 1. Ajuste no container para centralizar o título */
-.resume-section {
-    width: 100%;
-    margin-bottom: 20px;
-    text-align: center; /* Isso centraliza a etiqueta na tela */
-}
-
-/* 2. O estilo da etiqueta cinza */
-.card-title {
-    /* Comportamento de Caixa */
-    display: inline-block; /* Ocupa apenas o tamanho do texto, não a linha toda */
-    background-color: #000000; /* Fundo Cinza (ajuste para #7f8c8d se quiser mais azulado) */
-    color: #fff; /* Texto Branco */
-    
-    /* Espaçamento e Bordas */
-    padding: 8px 24px; /* Altura e Largura interna da etiqueta */
-    border-radius: 6px; /* Cantos levemente arredondados */
-    margin: 0 auto 40px auto; /* Centraliza e empurra os cards para baixo */
-    
-    /* Tipografia (Fonte menor e caixa alta) */
-    font-size: 1.2rem; 
-    font-weight: 700;
+.link-saiba-mais {
+    color: var(--accent-color);
+    font-size: 0.85rem;
     text-transform: uppercase;
     letter-spacing: 1px;
-    
-    /* Remove estilos antigos de título */
-    border: none;
-    position: relative;
+    opacity: 0;           /* Oculto, exibe no hover */
+    transform: translateY(10px);
+    transition: var(--transition-smooth);
+    margin-top: auto;
 }
 
-/* Espaçador entre Formação e Experiência */
-.spacer-internal {
-    height: 60px; /* Distância entre o fim da formação e o título da experiência */
-    width: 100%;
+.skill-card:hover .link-saiba-mais,
+.project-card:hover .link-saiba-mais,
+.timeline-card:hover .link-saiba-mais {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-/* --- ESTILO DOS CARDS INTERNOS (Mantém o cinza claro que fizemos) --- */
-.horizontal-timeline.centered-timeline {
-    display: flex;
-    justify-content: flex-start; /* Alinha os cards na esquerda */
+
+/* --- 8. PROJETOS (PORTFÓLIO) --- */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
     gap: 30px;
-    flex-wrap: wrap;
 }
 
-.content-card .item-content {
-    background-color: #ffff; 
-    border: 1px solid #e9ecef;
-    box-shadow: none;
+.project-card {
+    background-color: var(--bg-card);
+    border: var(--border-light);
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition-smooth);
 }
 
-.content-card .timeline-item:hover .item-content {
-    background-color: #fff;
-    border-color: #0D1164;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+.project-card:hover {
+    border-color: var(--accent-color);
     transform: translateY(-5px);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-    .content-card { padding: 40px 20px; }
-    .card-title { font-size: 1.8rem; text-align: center; } /* No celular fica centralizado */
-    .horizontal-timeline.centered-timeline { justify-content: center; }
-}
-
-/* --- SEÇÃO HABILIDADES --- */
-
-#habilidades {
-    background-color: #fff; /* ou a cor de fundo que você preferir */
-    padding: 80px 0;
-}
-
-/* 1. O Container que deixa lado a lado */
-.skills-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 25px;
+.project-img-container {
     width: 100%;
+    height: 220px;
+    overflow: hidden;
 }
 
-/* 2. O Card Individual (Branco com efeito) */
-.skill-card {
-    background-color: #fff;
-    padding: 30px 20px;
-    border: 1px solid #eee;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    
-    /* Sombra e Transição */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-.skill-card i {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #000;
-    transition: color 1.5s ease;
-}
-
-.skill-card h4 {
-    font-size: 1rem;
-    font-weight: 600;
-    color: #333;
-    transition: color 1.5s ease;
-}
-
-/* 3. Efeito Hover (Passar o mouse) */
-.skill-card:hover {
-    transform: translateY(-10px); /* Sobe */
-    border-color: #0D1164;        /* Borda Azul */
-    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.2); /* Brilho */
-}
-
-.skill-card:hover i, 
-.skill-card:hover h4 {
-    color: #001F3D; /* Ícone e Texto Azul */
-}
-
-/* --- ATIVAR EFEITO DE COR NAS HABILIDADES --- */
-
-/* 1. Garante que a imagem comece cinza dentro do card de habilidade */
-.skill-card .internal-logo {
-    background-color: transparent; /* Sem fundo cinza */
+.project-img-container img {
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(80%); /* Combina as fotos p/ não ficar tão colorida até focar */
+    transition: var(--transition-smooth);
 }
 
-.skill-card .internal-logo img {
-    max-height: 100%;
-    max-width: 100%;
-    object-fit: contain;
-    
-    /* Começa Preto e Branco */
-    filter: grayscale(100%); 
-    opacity: 0.6;
-    transition: all 1.5s ease;
-}
-
-/* 2. Quando passar o mouse no Card, a imagem ganha cor */
-.skill-card:hover .internal-logo img {
+.project-card:hover .project-img-container img {
     filter: grayscale(0%);
-    opacity: 1;
+    transform: scale(1.03);
 }
 
-/* --- SEÇÃO PROJETOS (Grade Flexível) --- */
-
-#projetos {
-    background-color: #fff; /* Fundo cinza claro para diferenciar */
-    padding: 80px 0;
-}
-
-/* 1. O Container Flex (A Fila Horizontal) */
-.projects-grid {
+.project-info {
+    padding: 30px;
     display: flex;
-    flex-wrap: wrap; /* Permite pular para a linha de baixo quando encher */
-    justify-content: center; /* Centraliza os cards se não preencherem a linha toda */
-    gap: 30px; /* Espaço entre os cards */
-    width: 100%;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-/* 2. O Card do Projeto (Estilo igual Habilidades) */
-.project-card {
-    background-color: #fff;
-    padding: 20px; /* Padding um pouco menor para a capa ficar maior */
-    width: 300px; /* Largura fixa para ficarem uniformes */
-    
-    border: 1px solid #eee;
-    border-radius: 8px;
-    text-align: center;
-    cursor: pointer;
-    
-    /* Efeitos de Transição */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+.tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
-/* 3. A Imagem de Capa */
-.project-cover {
-    width: 100%;
-    height: 180px; /* Altura fixa para todas as capas ficarem iguais */
-    margin-bottom: 20px;
-    border-radius: 6px;
-    overflow: hidden; /* Corta a imagem se sobrar */
-    background-color: #eee;
-}
-
-.project-cover img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Preenche todo o espaço sem esticar */
-    
-    /* O EFEITO PEDIDO: Cinza -> Cor */
-    filter: grayscale(100%);
-    transition: all 1.5s ease;
-}
-
-/* Título do Projeto */
-.project-card h4 {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-/* --- HOVER (Efeito ao passar o mouse) --- */
-.project-card:hover {
-    transform: translateY(-10px); /* Flutuar */
-    border-color: #0D1164;        /* Borda Laranja */
-    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.2); /* Sombra Laranja */
-}
-
-.project-card:hover .project-cover img {
-    filter: grayscale(0%); /* Imagem ganha cor */
-    transform: scale(1.05); /* Um leve zoom na imagem fica elegante */
-}
-
-.project-card:hover h4 {
-    color: #001F3D; /* Texto fica Azul*/
-}
-
-/* Responsividade para Celular */
-@media (max-width: 768px) {
-    .project-card {
-        width: 100%; /* No celular ocupa a largura toda */
-        max-width: 350px;
-    }
-}
-
-/* --- Footer --- */
-footer {
-    background-color: #A2D5C6;
-    color: #000000;
-    padding: 25px 0;
-    text-align: center;
-}
-
-.social-links {
-    margin-bottom: 20px;
-}
-
-.social-links a {
-    font-size: 1.5rem;
-    margin: 0 10px;
-    color: #000000;
-    transition: var(--transition);
-}
-
-.social-links a:hover {
-    color: #000000;
-}
-
-/* --- Responsividade --- */
-/* 1. Esconde o ícone no computador */
-#menu-icon {
-    display: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-main);
-}
-
-/* 2. Configuração apenas para celular/tablet */
-@media (max-width: 768px) {
-    
-    /* Mostra o ícone */
-    #menu-icon {
-        display: block; 
-    }
-
-    /* Estiliza o menu quando estiver no modo mobile */
-    .nav-links {
-        /* Posição e Layout */
-        position: absolute;
-        top: 60px; /* Mesma altura do Header */
-        right: 0;
-        width: 100%;
-        background-color: #fff;
-        flex-direction: column; /* Links um embaixo do outro */
-        align-items: center;
-        padding: 20px 0;
-        gap: 25px;
-        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-        
-        /* ANIMAÇÃO DE APARECER */
-        /* Começa escondido (display: none ou transform) */
-        display: none; 
-        z-index: 9998;
-    }
-
-    /* Classe que o JavaScript vai adicionar para mostrar o menu */
-    .nav-links.active {
-        display: flex;
-        animation: slideDown 0.3s ease forwards;
-    }
-}
-
-/* Pequena animação suave */
-@keyframes slideDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* --- Modal / Pop-up (Abertura Suave) --- */
-
-.modal {
-    /* Layout fixo na tela */
-    position: fixed;
-    z-index: 2000;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Fundo escuro */
-    backdrop-filter: blur(4px); /* Desfoque leve no fundo */
-    
-    /* Centralização */
-    display: flex; 
-    align-items: center;
-    justify-content: center;
-
-    /* ESTADO INICIAL (Escondido) */
-    visibility: hidden;
-    opacity: 0;
-    pointer-events: none; /* Impede clicar quando invisível */
-    
-    /* A transição suave do fundo escuro */
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-/* ESTADO ABERTO (Adicionado via JS) */
-.modal.open {
-    visibility: visible;
-    opacity: 1;
-    pointer-events: all; /* Libera o clique */
-}
-
-/* --- A CAIXA BRANCA DE CONTEÚDO (Correção da Tremida) --- */
-.modal-content {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 12px;
-    width: 95%;
-    max-width: 900px;
-    position: relative;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-
-    /* ESTADO INICIAL DA ANIMAÇÃO */
-    /* Removemos o 'scale(0.95)' que causava a tremida */
-    transform: translateY(40px); 
-    opacity: 0;
-    
-    /* Melhora a renderização do texto para evitar borrão */
-    -webkit-font-smoothing: antialiased;
-    backface-visibility: hidden;
-    
-    /* A transição suave apenas de posição e opacidade */
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-}
-
-/* FINAL DA ANIMAÇÃO (Quando abre) */
-.modal.open .modal-content {
-    /* Apenas move para o lugar certo, sem mudar o tamanho */
-    transform: translateY(0); 
-    opacity: 1;
-}
-
-/* Botão de Fechar (X) */
-.close-modal {
-    color: #bbb;
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.close-modal:hover {
-    color: var(--orange-accent);
-    transform: rotate(90deg);
-}
-
-/* Tipografia Interna do Modal */
-#modal-title {
-    font-size: 1.5rem;
-    color: #0D1164;
-    margin-bottom: 5px;
-}
-#modal-subtitle {
-    font-size: 0.9rem;
-    color: #A2D5C6;
-    font-weight: 600;
+.tags span {
+    font-size: 0.75rem;
     text-transform: uppercase;
-    margin-bottom: 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #eee;
+    letter-spacing: 0.5px;
+    padding: 4px 10px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--accent-color);
+    border-radius: 2px;
 }
-#modal-body {
-    font-size: 1rem;
-    color: #0D1164;
-    line-height: 1.6;
+
+.project-info h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.project-info p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
     text-align: justify;
 }
 
-/* Carrossel Interno do Modal (caso use fotos) */
-.modal-carousel-container {
+.project-info .link-saiba-mais {
+    margin-top: auto;
+    display: inline-block;
+}
+
+
+/* --- 9. TRAJETÓRIA (TIMELINE CENTRAL) --- */
+.central-timeline {
     position: relative;
-    width: 100%;
-    height: 250px;
-    margin-bottom: 20px;
-    overflow: hidden;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    display: none;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px 0;
 }
-.modal-carousel-track {
-    display: flex;
-    height: 100%;
-    transition: transform 0.4s ease-in-out;
-}
-.modal-img {
-    min-width: 100%;
-    height: 100%;
-    object-fit: contain;
-    display: block;
-    background-color: #fff;
-}
-.modal-nav-btn {
+
+.central-timeline::after {
+    content: '';
     position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.9);
-    border: none;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10;
-    color: var(--orange-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-.modal-nav-btn:hover { transform: translateY(-50%) scale(1.1); }
-.modal-nav-btn.prev { left: 10px; }
-.modal-nav-btn.next { right: 10px; }
-
-/* --- ÍCONE DE LUPA (AMPLIAR IMAGEM) --- */
-.zoom-indicator {
-    position: absolute;
-    bottom: 15px; /* Distância do fundo */
-    right: 15px;  /* Distância da direita */
-    background-color: var(--orange-accent, #0D1164); /* Sua cor principal */
-    color: #fff;
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    z-index: 10;
-    
-    /* O SEGREDO: O clique "atravessa" a lupa e acerta a imagem embaixo dela */
-    pointer-events: none; 
-    
-    /* Animação suave */
-    opacity: 0.7;
-    transition: all 0.3s ease;
+    width: 2px;
+    background-color: rgba(255, 255, 255, 0.1);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -1px;
 }
 
-/* Quando o usuário passa o mouse na imagem, a lupa brilha e cresce */
-.modal-carousel-container:hover .zoom-indicator {
-    opacity: 1;
-    transform: scale(1.1);
-}
-
-/* --- CSS Timeline: Cartão Único (Logo dentro) --- */
-
-:root {
-    --orange-accent: #0D1164
-}
-
-.horizontal-section {
-    margin-bottom: 50px;
-    width: 100%;
-}
-
-.section-header.centered-header h3 {
-    justify-content: center;
-    text-align: center;
-    font-size: 1.5rem;
-    margin-bottom: 40px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    color: var(--text-main);
-}
-.section-header h3 i { color: var(--orange-accent); }
-
-/* Grid Centralizado */
-.horizontal-timeline.centered-timeline {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    padding-bottom: 20px;
-}
-
-/* Container do Item (Clica aqui) */
-.timeline-item {
-    width: 280px;
-    cursor: pointer;
+.timeline-row {
+    padding: 10px 40px;
     position: relative;
+    background-color: inherit;
+    width: 50%;
+    box-sizing: border-box;
+}
+
+.timeline-row.left-side {
+    left: 0;
+}
+
+.timeline-row.right-side {
+    left: 50%;
+}
+
+.timeline-dot-central {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: -7px;
+    background-color: var(--bg-secondary);
+    border: 2px solid var(--accent-color);
+    top: 32px;
+    border-radius: 50%;
+    z-index: 2;
+    transition: var(--transition-smooth);
+}
+
+.right-side .timeline-dot-central {
+    left: -7px;
+}
+
+.timeline-card {
+    background-color: var(--bg-card);
+    padding: 25px 30px;
+    border-radius: var(--border-radius);
+    border: var(--border-light);
+    position: relative;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.timeline-card:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.timeline-row:hover .timeline-dot-central {
+    background-color: var(--accent-color);
+    box-shadow: 0 0 10px var(--accent-color);
+}
+
+.timeline-card::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 28px;
+    width: 0;
     z-index: 1;
+    border: medium solid var(--bg-card);
+    transition: var(--transition-smooth);
 }
 
-/* --- O CARTÃO ÚNICO (Branco) --- */
-.item-content {
-    background: #fff;
-    border-radius: 12px;
-    border: 1px solid #eee; /* Borda inicial cinza */
-    padding: 20px;
-    text-align: center;
-    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+.left-side .timeline-card::before {
+    right: -10px;
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--bg-card);
+}
+
+.left-side .timeline-card:hover::before {
+    border-color: transparent transparent transparent var(--accent-color);
+}
+
+.right-side .timeline-card::before {
+    left: -10px;
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--bg-card) transparent transparent;
+}
+
+.right-side .timeline-card:hover::before {
+    border-color: transparent var(--accent-color) transparent transparent;
+}
+
+.timeline-logo {
+    width: 70px;
+    height: 70px;
+    flex-shrink: 0;
+    background: #FFF;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    overflow: hidden;
+}
+
+.timeline-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    filter: invert(0.8) sepia(1) hue-rotate(180deg) saturate(0%); /* Escala de cinza/pálida */
+    transition: var(--transition-smooth);
+}
+
+.timeline-card:hover .timeline-logo img {
+    filter: none;
+}
+
+.timeline-content {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    height: 100%; /* Garante altura igual */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    flex-grow: 1;
 }
 
-/* Animação de Hover no Cartão Inteiro */
-.timeline-item:hover .item-content {
-    transform: translateY(-10px); /* Sobe tudo junto */
-    border-color: var(--orange-accent); /* Borda fica laranja/iluminada */
-    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.15); /* Brilho laranja */
+.left-side .timeline-card {
+    flex-direction: row;
+    text-align: right;
 }
 
-/* --- LOGO INTERNA (Ajuste de Velocidade) --- */
-.internal-logo {
-    width: 100%;
-    height: 80px;
-    background-color: transparent; 
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-    color: #999;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border: 0px solid transparent; /* Borda invisível inicial para não "pular" */
-        /* AQUI ESTÁ O SEGREDO: 0.6s deixa a ida e a volta lentas */
-    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+.right-side .timeline-card {
+    flex-direction: row;
+    text-align: left;
 }
 
-.internal-logo img {
-    max-width: 60%;
-    max-height: 60%;
-    object-fit: contain;
-    filter: grayscale(100%);
-    opacity: 0.6;
-    /* A imagem também muda devagar junto com o fundo */
-    transition: all 1s ease;
-}
-
-/* Hover na Logo (Quando passa o mouse no card) */
-.timeline-item:hover .internal-logo {
-    background-color: transparent; 
-    border-color: transparent; /* Cinza suave na borda */
-    box-shadow: none; /* Sombra leve */
-}
-
-.timeline-item:hover .internal-logo img {
-    filter: grayscale(0%);
-    opacity: 1;
-}
-
-/* --- TEXTOS --- */
-.text-area {
-    width: 100%;
-}
-
-.resume-date {
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: #0D1164;
-    text-transform: uppercase;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.timeline-item h4 {
-    font-size: 1.1rem;
+.timeline-date {
+    font-size: 0.85rem;
+    color: var(--accent-color);
     margin-bottom: 5px;
-    color: #0D1164;
-    font-weight: 700;
-    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
 }
 
-.institution, .see-more {
-    color: #0D1164; 
-    transition: color 0.3s ease;
+.timeline-content h4 {
+    font-size: 1.25rem;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.timeline-content h5 {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    font-weight: 400;
+}
+
+
+/* --- 10. CONTATO & FOOTER --- */
+.contact-wrapper {
+    background-color: var(--bg-card);
+    border: var(--border-light);
+    border-radius: var(--border-radius);
+    padding: 80px 40px;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.contact-wrapper h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.contact-desc {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.contact-buttons-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 50px;
+}
+
+.social-links-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-links-footer a {
+    width: 45px;
+    height: 45px;
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    color: var(--text-main);
+}
+
+.social-links-footer a:hover {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.site-footer {
+    border-top: var(--border-light);
+    padding: 30px 0;
+    text-align: center;
+}
+
+.site-footer p {
+    color: var(--text-muted);
     font-size: 0.9rem;
 }
 
-.see-more {
-    font-size: 0.75rem;
-    color: #0D1164;
-    font-weight: 800;
-    text-transform: uppercase;
-    opacity: 0.8;
-}
 
-.timeline-item:hover .see-more {
-    opacity: 1;
-    text-decoration: underline;
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    .horizontal-timeline.centered-timeline {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-
-/* --- BOTÕES CENTRAIS DA HOME --- */
-/* Centraliza o grupo de botões */
-.botoes-home {
-    display: flex;
-    justify-content: center; /* Alinha no centro */
-    gap: 20px; /* Espaço entre os botões */
-    margin-top: 30px;
-    flex-wrap: wrap; /* Ajusta se a tela for pequena */
-}
-
-/* --- BOTÕES PADRONIZADOS (Home e Sobre Mim) --- */
-/* Aplica o visual dos Cards de Formação em ambos os botões */
-
-.btn, .btn-central {
-    /* 1. Estrutura e Tamanho */
-    display: inline-block;
-    padding: 15px 35px;
-    margin-top: 10px; /* Garante um respiro se tiver texto em cima */
-    
-    /* 2. Visual Base (Caixa Branca Suave) */
-    background-color: #fff;       
-    color: #333;                  
-    border: 1px solid #eee;       
-    border-radius: 12px;          
-    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
-    
-    /* 3. Tipografia */
-    font-family: "Inter", sans-serif;
-    font-size: 14px;
-    font-weight: 600;
-    text-transform: uppercase;
-    text-decoration: none;
-    letter-spacing: 1px;
-    cursor: pointer;
-    
-    /* 4. Animação Física (O "pulo" suave) */
-    transition: all 1.5s cubic-bezier(0.25, 0.8, 0.25, 1);
-}
-
-/* --- EFEITO AO PASSAR O MOUSE (HOVER) --- */
-.btn:hover, .btn-central:hover {
-    /* Flutua para cima */
-    transform: translateY(-5px); 
-    
-    /* Borda e Texto ficam Laranjas */
-    border-color: #0D1164; 
-    color: #0D1164; 
-    
-    /* Sombra Laranja Brilhante */
-    box-shadow: 0 15px 30px rgba(237, 152, 95, 0.2); 
-    
-    /* Garante que o fundo continue branco */
-    background-color: #fff; 
-}
-
-/* --- LIGHTBOX (IMAGEM EM TELA CHEIA) --- */
-/* 1. O Fundo Preto */
-#fullscreen-overlay {
-    display: none; /* Começa invisível */
+/* --- 11. SISTEMA E DESIGN DO MODAL (COM CARROSSEL) --- */
+.modal-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.95); /* Fundo quase preto */
-    z-index: 9999; /* Fica na frente de TUDO, até do popup */
-    justify-content: center;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(10, 10, 10, 0.9);
+    z-index: 9999;
+    display: flex;
     align-items: center;
-    opacity: 0; /* Para animação */
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
     transition: opacity 0.3s ease;
 }
 
-/* Quando estiver ativo (via JS) */
-#fullscreen-overlay.active {
-    display: flex;
+.modal-overlay.active {
     opacity: 1;
+    visibility: visible;
 }
 
-/* 2. A Imagem Grande */
-#fullscreen-overlay img {
-    max-width: 90%;
-    max-height: 90%;
-    object-fit: contain;
-    border-radius: 4px;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-    transform: scale(0.8);
-    transition: transform 0.3s ease;
+.modal-box {
+    background-color: var(--bg-primary);
+    width: 90%;
+    max-width: 850px;
+    max-height: 90vh;
+    border: var(--border-light);
+    border-bottom: 3px solid var(--accent-color); /* Toque final de cobre no rodapé da caixa */
+    position: relative;
+    overflow-y: auto;
+    transform: translateY(30px);
+    transition: transform 0.4s ease;
 }
 
-#fullscreen-overlay.active img {
-    transform: scale(1); /* Efeito de zoom ao abrir */
+.modal-overlay.active .modal-box {
+    transform: translateY(0);
 }
 
-/* 3. O Botão de Fechar (X) */
-#close-fullscreen {
+/* Botão Fechar Modal */
+.modal-close-icon {
     position: absolute;
     top: 20px;
-    right: 40px;
-    color: #fff;
-    font-size: 40px;
-    font-weight: bold;
+    right: 20px;
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: color 0.3s;
-    z-index: 10000;
+    z-index: 10;
+    transition: var(--transition-smooth);
 }
 
-#close-fullscreen:hover {
-    color: #A2D5C6; /* Sua cor de destaque */
+.modal-close-icon:hover {
+    color: var(--accent-color);
+    transform: rotate(90deg);
 }
 
-/* 4. Mudar cursor para Lupa nas imagens do Popup */
-.modal-body img, .carousel-item img {
-    cursor: zoom-in; /* Mostra lupa com + */
+/* Textos Superiores do Modal e Logo */
+.modal-header-info {
+    padding: 40px 40px 20px;
+    border-bottom: var(--border-light);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
 }
 
-/* --- SETAS DE NAVEGAÇÃO DA TELA CHEIA --- */
-.fs-nav-btn {
+.header-titles {
+    flex-grow: 1;
+}
+
+.header-logo {
+    width: 65px;
+    height: 65px;
+    flex-shrink: 0;
+    background: #FFF;
+    border-radius: var(--border-radius);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    overflow: hidden;
+}
+
+.header-logo img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+.modal-header-info h3 {
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--text-main);
+    margin-bottom: 5px;
+}
+
+.modal-header-info h4 {
+    font-size: 1rem;
+    color: var(--accent-color);
+    font-family: var(--font-body); /* Body font pra ser menos gritante */
+}
+
+/* Área do Carrossel (Visível apenas se houver imagem p/ injetar) */
+.modal-carousel-area {
+    width: 100%;
+    background-color: var(--bg-secondary);
+    position: relative;
+    padding: 20px 40px 45px 40px; /* Mais espaco inferior (45px) para a bolinha não bater no texto e na linha */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: var(--border-light);
+}
+
+.carousel-image-container {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+/* Botão Lupa Tela Cheia */
+.btn-fullscreen {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.6);
+    color: var(--text-main);
+    border: 1px solid rgba(255,255,255,0.2);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    z-index: 10;
+}
+
+.btn-fullscreen:hover {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: #111;
+}
+
+.carousel-image-container img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain; /* Não corta a imagem original */
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+}
+
+.carousel-arrow {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background: rgba(255, 255, 255, 0.1); /* Fundo transparente suave */
-    border: none;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    cursor: pointer;
-    z-index: 10000; /* Fica na frente de tudo */
+    background: rgba(0,0,0,0.5);
     color: #fff;
-    font-size: 1.8rem;
-    display: none; /* Começa escondido, o JS ativa se tiver mais de 1 foto */
+    border: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.3s;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: var(--transition-smooth);
+    z-index: 5;
 }
 
-.fs-nav-btn:hover {
-    background: rgba(255, 255, 255, 0.3); /* Brilha ao passar o mouse */
-    transform: translateY(-50%) scale(1.1);
+.carousel-arrow:hover {
+    background: var(--accent-color);
 }
 
-#fs-prev-btn { left: 30px; }
-#fs-next-btn { right: 30px; }
+.carousel-arrow.prev { left: 10px; }
+.carousel-arrow.next { right: 10px; }
 
-/* Diminui um pouco no celular */
-@media (max-width: 768px) {
-    .fs-nav-btn { width: 45px; height: 45px; font-size: 1.2rem; }
-    #fs-prev-btn { left: 10px; }
-    #fs-next-btn { right: 10px; }
+/* Bolinhas indicadoras do carrossel */
+.carousel-indicators {
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
 }
 
-/* =========================================
-   VERSÃO MOBILE (CELULARES) - AJUSTADA
-   ========================================= */
-@media (max-width: 768px) {
-    
-    /* 1. ACERTAR AS BORDAS */
-    .container {
-        width: 100%;
-        padding-left: 20px;
-        padding-right: 20px;
-        box-sizing: border-box;
-    }
+.carousel-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--text-muted);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
 
-    /* 2. AJUSTAR OS TÍTULOS (Habilidades/Projetos) */
-    .section-title {
-        font-size: 1.2rem !important;
-        padding: 4px 12px !important;
-        width: fit-content !important;
-        max-width: 90%;
-        display: table; /* Mudado para table para centralizar melhor sem hacks */
-        margin: 0 auto 30px auto; /* Centraliza horizontalmente */
-        white-space: nowrap;
-    }
+.carousel-dot.active {
+    background-color: var(--accent-color);
+    transform: scale(1.3);
+}
 
-    /* 3. TÍTULOS DE ETIQUETA (Formação/Experiência) */
-    .card-title {
-        font-size: 1.0rem !important;      /* Fonte ajustada */
-        white-space: nowrap !important;     /* Texto numa linha só */
-        display: inline-block !important;   /* Comporta-se como bloco */
-        width: auto !important;             /* Largura do texto */
-        /* --- ALINHAMENTO À ESQUERDA (NO LADO) --- */
-        margin-left: 0 !important;          /* Cola na esquerda */
-        margin-right: auto !important;      /* Espaço livre na direita */
-        margin-bottom: 20px !important;     /* Espaço embaixo */
-        /* Reseta qualquer centralização antiga */
-        position: static !important;
-        transform: none !important;
-        left: auto !important;
-    }
+/* Conteúdo Descritivo Abaixo do Modal */
+.modal-text-content {
+    padding: 30px 40px;
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    line-height: 1.8;
+}
 
-    /* 4. SEÇÃO SOBRE MIM */
-    #sobre .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+.modal-text-content p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+/* Barra de Scroll estilizada para o Modal */
+.modal-box::-webkit-scrollbar {
+    width: 8px;
+}
+.modal-box::-webkit-scrollbar-track {
+    background: var(--bg-primary); 
+}
+.modal-box::-webkit-scrollbar-thumb {
+    background: var(--accent-color); 
+}
+
+/* --- 12. SISTEMA DE TELACHEIA (LIGHTBOX) --- */
+.lightbox-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background-color: rgba(5, 5, 5, 0.95);
+    z-index: 10000; /* Acima do Modal */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--transition-smooth);
+}
+
+.lightbox-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.lightbox-content {
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: var(--border-radius);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-close-icon {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    background: transparent;
+    border: none;
+    color: var(--text-main);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 10001;
+    transition: var(--transition-smooth);
+}
+
+.lightbox-close-icon:hover {
+    color: var(--accent-color);
+    transform: scale(1.1);
+}
+
+.lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    color: var(--text-main);
+    border: none;
+    font-size: 2.5rem;
+    cursor: pointer;
+    z-index: 10001;
+    transition: var(--transition-smooth);
+    padding: 20px;
+}
+
+.lightbox-arrow:hover {
+    color: var(--accent-color);
+}
+
+.lightbox-arrow.prev { left: 20px; }
+.lightbox-arrow.next { right: 20px; }
+
+
+/* --- 13. ANIMAÇÕES SCROLL OBSERVER --- */
+.observe-fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.observe-fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.delay-1 { transition-delay: 0.2s; }
+.delay-2 { transition-delay: 0.4s; }
+
+
+@media screen and (max-width: 1024px) {
+    .timeline-row {
+        padding: 10px 20px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Hero e Global */
+    .hero-grid {
+        grid-template-columns: 1fr;
         text-align: center;
     }
+    
+    .hero-actions {
+        justify-content: center;
+    }
 
-    .about-img img {
-        width: 150px;
-        height: 150px;
-        margin-bottom: 20px;
-        margin-right: 0;
+    .hero-visual {
+        order: -1; /* Foto sobe pra cima no celular */
+        margin-bottom: 30px;
     }
     
-    .about-text-content p {
-        text-align: justify; 
-        font-size: 0.95rem;
+    .about-stats-container {
+        flex-direction: column;
+        gap: 30px;
     }
 
-    /* --- [CORREÇÃO 1] CENTRALIZAR BOTÃO SOBRE MIM --- */
-    .about-btn-area {
-        display: flex;
-        justify-content: center; /* Alinha o botão no centro */
+    .contact-buttons-row {
+        flex-direction: column;
+    }
+
+    /* Timeline Responsiva */
+    .central-timeline::after { left: 31px; }
+    .timeline-row { width: 100%; padding-left: 70px; padding-right: 25px; }
+    .timeline-row.left-side { left: 0; }
+    .timeline-row.right-side { left: 0; }
+    .left-side .timeline-card::before, .right-side .timeline-card::before {
+        left: -10px; right: auto;
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--bg-card) transparent transparent;
+    }
+    .left-side .timeline-card:hover::before, .right-side .timeline-card:hover::before {
+        border-color: transparent var(--accent-color) transparent transparent;
+    }
+    .timeline-dot-central { left: 24px; right: auto; }
+    .right-side .timeline-dot-central { left: 24px; }
+    
+    .left-side .timeline-card { text-align: left; }
+
+    /* Modal Responsivo */
+    .modal-carousel-area {
+        padding: 20px 10px;
+    }
+    .carousel-image-container {
+        height: 250px;
+    }
+    .modal-header-info, .modal-text-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    /* Navegação Hamburguer */
+    .mobile-menu-toggle {
+        display: block;
+    }
+    
+    .desktop-nav {
+        display: none; /* Desliga no CSS para ligar com JS */
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
         width: 100%;
+        background-color: var(--bg-primary);
+        border-bottom: var(--border-light);
+        padding: 20px 0;
+        text-align: center;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.5);
     }
 
-    /* 5. CARDS GERAIS (Largura Total) */
-    .skill-card, 
-    .project-card, 
-    .content-card {
-        width: 100% !important;
-        margin-bottom: 20px;
-    }
-
-    /* Grid de Habilidades */
-    .skills-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); 
-        gap: 15px;
-    }
-
-    /* Projetos */
-    .projects-grid {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    /* 6. CABEÇALHO / MENU */
-    header .container { padding: 15px 20px; }
-    .logo { font-size: 1.5rem; }
-
-    /* --- [CORREÇÃO 2] CARDS DE EXPERIÊNCIA (Ficam Iguais) --- */
-    .horizontal-timeline.centered-timeline {
-        display: flex !important;
-        flex-direction: column !important;
-        
-        /* MUDANÇA CHAVE: 'stretch' obriga todos a terem a mesma largura */
-        align-items: stretch !important; 
-        
-        gap: 20px !important;
-        width: 100% !important;
-    }
-
-    /* Garante que o item ocupe o espaço dado pelo 'stretch' */
-    .timeline-item {
-        width: 100% !important;
-        margin: 0 !important;
-    }
-
-    /* --- [CORREÇÃO 3] CONTEÚDO DENTRO DO CARD (Centralizado) --- */
-    /* Como esticamos o card, agora precisamos mandar o texto ir para o meio */
-    .timeline-item .item-content {
+    .desktop-nav.active {
         display: flex;
-        flex-direction: column;
-        align-items: center; /* Centraliza Imagem e Blocos */
-        text-align: center;  /* Centraliza Texto */
+    }
+
+    .desktop-nav .nav-cta {
+        margin-top: 15px;
     }
 }
