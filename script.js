@@ -1,325 +1,121 @@
-/* =========================================================================
-   SCRIPT.JS - LÓGICA E INTERAÇÕES DO PORTFÓLIO (Minimalista Civil)
-   ========================================================================= */
+const cases = {
+  rodoviario: {
+    category: "Infraestrutura viária · 2025", title: "Projeto Rodoviário Casa Nova",
+    challenge: "Conceber um traçado de 48 km entre Casa Nova (BA) e o entroncamento do KM 25 em Petrolina (PE), compatível com o fluxo convencional e com o transporte de componentes eólicos.",
+    action: "Modelei o eixo no Civil 3D, trabalhei o modelo digital do terreno e apliquei critérios geométricos do DNIT para curvas, superelevação, superlargura e greide.",
+    outcome: "Traçado georreferenciado pronto para refinamento do greide e otimização dos volumes de corte e aterro, com decisões técnicas documentadas para as próximas etapas.",
+    tags: ["Civil 3D", "DNIT", "MDT", "Terraplenagem"], images: ["img/Projetos/civil1.png", "img/Projetos/civil2.png", "img/Projetos/civil3.png"], alt: "Prancha e modelo do projeto rodoviário Casa Nova"
+  },
+  eletrico: {
+    category: "Projetos complementares · BIM", title: "Instalações elétricas em BIM",
+    challenge: "Desenvolver instalações elétricas residenciais de baixa tensão com dimensionamento, coordenação espacial e documentação consistentes.",
+    action: "Modelei eletrodutos e circuitos no Revit, dimensionei cargas e demanda, equilibrei fases e detalhei quadros e dispositivos de proteção conforme a NBR 5410.",
+    outcome: "Modelo coordenado com arquitetura e estrutura, plantas executivas e quantitativos automáticos para reduzir interferências e apoiar orçamento e execução.",
+    tags: ["Revit", "NBR 5410", "BIM", "Quantitativos"], images: ["img/Projetos/elet1.png", "img/Projetos/elet2.png", "img/Projetos/elet3.png", "img/Projetos/elet4.png"], alt: "Modelo BIM e pranchas do projeto elétrico"
+  },
+  hidro: {
+    category: "Instalações prediais · 2025", title: "Residência — Hidrossanitário",
+    challenge: "Dimensionar água fria e esgoto sanitário para uma residência de dois pavimentos, incluindo pressurização e detalhamento de pontos críticos.",
+    action: "Produzi plantas, cortes e perspectivas isométricas por ambiente, além do detalhamento do barrilete e cavalete, seguindo NBR 5626, NBR 8160 e NBR 10844.",
+    outcome: "Documentação executiva coordenada, bomba pressurizadora de 9 mca especificada e levantamento quantitativo extraído do modelo.",
+    tags: ["Revit MEP", "NBR 5626", "NBR 8160", "Quantitativos"], images: ["img/Projetos/hidro.png", "img/Projetos/hidro (2).png", "img/Projetos/hidro (3).png", "img/Projetos/hidro (5).png", "img/Projetos/hidro (8).png"], alt: "Modelo e detalhamentos do projeto hidrossanitário"
+  },
+  coordenacao: {
+    category: "Gestão de projetos", title: "Coordenação multidisciplinar",
+    challenge: "Organizar simultaneamente as frentes de edificações, elétrica, hidrossanitária e orçamento, mantendo escopo, prazo e qualidade contratual.",
+    action: "Conduzi briefing, relacionamento com o cliente, distribuição de atividades, cronograma no Microsoft Project e verificação de colisões entre disciplinas.",
+    outcome: "Fluxo de produção integrado, acompanhamento objetivo de prazos e entregáveis técnicos compatibilizados com o contrato.",
+    tags: ["MS Project", "Clash Detection", "Coordenação", "Orçamento"], images: ["img/Projetos/coord.png", "img/Projetos/coord2.png"], alt: "Cronograma e documentos da coordenação multidisciplinar"
+  }
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. EFEITO NA NAVEGAÇÃO AO ROLAR (SCROll) ---
-    // Deixa o menu transparente com fundo sólido e menor ao rolar
-    const header = document.querySelector('.main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
+const root = document.documentElement;
+const header = document.querySelector("[data-header]");
+const menuButton = document.querySelector("[data-menu-button]");
+const nav = document.querySelector("[data-nav]");
+const themeButton = document.querySelector("[data-theme-toggle]");
+const dialog = document.querySelector("[data-case-dialog]");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const storedTheme = localStorage.getItem("portfolio-theme");
+const preferredTheme = window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark";
+root.dataset.theme = storedTheme || preferredTheme;
+
+themeButton.addEventListener("click", () => {
+  const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+  root.dataset.theme = nextTheme;
+  localStorage.setItem("portfolio-theme", nextTheme);
+  document.querySelector('meta[name="theme-color"]').content = nextTheme === "dark" ? "#0b1016" : "#f5f7f8";
+});
+
+menuButton.addEventListener("click", () => {
+  const expanded = menuButton.getAttribute("aria-expanded") === "true";
+  menuButton.setAttribute("aria-expanded", String(!expanded));
+  menuButton.querySelector(".sr-only").textContent = expanded ? "Abrir menu" : "Fechar menu";
+  nav.classList.toggle("is-open", !expanded);
+});
+
+nav.addEventListener("click", (event) => {
+  if (!event.target.matches("a")) return;
+  nav.classList.remove("is-open"); menuButton.setAttribute("aria-expanded", "false");
+  menuButton.querySelector(".sr-only").textContent = "Abrir menu";
+});
+
+window.addEventListener("scroll", () => header.classList.toggle("scrolled", window.scrollY > 18), { passive: true });
+const revealElements = document.querySelectorAll(".reveal");
+if (prefersReducedMotion.matches) revealElements.forEach((element) => element.classList.add("is-visible"));
+else {
+  const revealObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach((entry) => { if (entry.isIntersecting) { entry.target.classList.add("is-visible"); observer.unobserve(entry.target); } });
+  }, { threshold: 0.12 });
+  revealElements.forEach((element) => revealObserver.observe(element));
+}
+
+const sections = document.querySelectorAll("main section[id]");
+const navLinks = [...nav.querySelectorAll("a")];
+const sectionObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    navLinks.forEach((link) => {
+      const active = link.getAttribute("href") === `#${entry.target.id}`;
+      link.classList.toggle("active", active);
+      if (active) link.setAttribute("aria-current", "location"); else link.removeAttribute("aria-current");
     });
+  });
+}, { rootMargin: "-38% 0px -55%", threshold: 0 });
+sections.forEach((section) => sectionObserver.observe(section));
 
+let activeCase = null;
+let activeImageIndex = 0;
+const dialogImage = dialog.querySelector("[data-dialog-image]");
+const galleryCount = dialog.querySelector("[data-gallery-count]");
+const galleryPrev = dialog.querySelector("[data-gallery-prev]");
+const galleryNext = dialog.querySelector("[data-gallery-next]");
 
-    // --- 2. MENU MOBILE RESPONSIVO ---
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const desktopNav = document.querySelector('.desktop-nav');
-    
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            desktopNav.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            // Alterna o ícone de hambúrguer para um X
-            if (desktopNav.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
+function renderGallery() {
+  dialogImage.src = activeCase.images[activeImageIndex];
+  dialogImage.alt = `${activeCase.alt} — imagem ${activeImageIndex + 1} de ${activeCase.images.length}`;
+  galleryCount.textContent = `${activeImageIndex + 1} / ${activeCase.images.length}`;
+  const singleImage = activeCase.images.length < 2;
+  galleryPrev.hidden = singleImage; galleryNext.hidden = singleImage;
+}
+function moveGallery(step) { activeImageIndex = (activeImageIndex + step + activeCase.images.length) % activeCase.images.length; renderGallery(); }
 
-        // Fechar o menu automaticamente caso o usuário clique em um link no mobile
-        const navLinks = document.querySelectorAll('.nav-link, .nav-cta');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    desktopNav.classList.remove('active');
-                    mobileToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
-                }
-            });
-        });
-    }
-
-
-    // --- 3. OBSERVAÇÃO DE SCROLL (FADE UP TRANQUILO E FORMAL) ---
-    // Suavamente apresenta os blocos de conteúdo ao invés de aparecerem derrepente
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // Gatilho dispara logo que 10% entra na tela
-    };
-
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Parar de observar depois de exibir a primeira vez:
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-
-    const fadeElements = document.querySelectorAll('.observe-fade-up');
-    fadeElements.forEach(el => scrollObserver.observe(el));
-
-
-    // --- 4. DESTAQUE DO MENU ATIVO ---
-    // Ilumina de 'Cobre/Ouro' a seção em que o usuário está atualmente na página
-    const sections = document.querySelectorAll('.section');
-    const menuLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let currentLevel = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            // Se já passou -200px da secao atual, ele entende que entramos ativamente nela
-            if (scrollY >= (sectionTop - 150)) {
-                currentLevel = section.getAttribute('id');
-            }
-        });
-
-        menuLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(currentLevel)) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-
-    // --- 5. SISTEMA DO MODAL E GALERIA (CARROSSEL DE IMAGENS) ---
-    const modalOverlay = document.getElementById('general-modal');
-    const closeBtn = document.querySelector('.modal-close-icon');
-
-    const modalTitleElem = document.getElementById('modal-main-title');
-    const modalSubElem = document.getElementById('modal-subtitle');
-    const modalDescElem = document.getElementById('modal-desc');
-    const modalHeaderLogo = document.getElementById('modal-header-logo');
-    const modalHeaderLogoContainer = document.getElementById('modal-header-logo-container');
-    
-    // Variáveis Relacionadas ao Carrossel de Imagens no Modal
-    const carouselArea = document.getElementById('modal-carousel-area');
-    const activeImageElem = document.getElementById('carousel-active-image');
-    const btnPrev = document.getElementById('carousel-prev');
-    const btnNext = document.getElementById('carousel-next');
-    const indicatorsArea = document.getElementById('carousel-indicators');
-
-    // Variáveis Lightbox (Fullscreen)
-    const lightboxOverlay = document.getElementById('lightbox-overlay');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const btnFullscreen = document.getElementById('btn-fullscreen');
-    const lightboxCloseBtn = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-
-    let currentImageArray = [];
-    let currentImageIndex = 0;
-
-    // Função Interna para Atualizar a Visão da Imagem e Lightbox
-    const renderCarouselState = () => {
-        if (currentImageArray.length > 0) {
-            // Atualiza a fonte da imagem (com fade para n ficar quebrado)
-            activeImageElem.style.opacity = 0;
-            if (lightboxOverlay.classList.contains('active')) {
-                lightboxImg.style.opacity = 0;
-            }
-
-            setTimeout(() => {
-                activeImageElem.src = currentImageArray[currentImageIndex];
-                activeImageElem.style.opacity = 1;
-                
-                if (lightboxOverlay.classList.contains('active')) {
-                    lightboxImg.src = currentImageArray[currentImageIndex];
-                    lightboxImg.style.opacity = 1;
-                }
-            }, 150); // micro retardo
-            
-            // Atualiza bolinhas (indicators)
-            const dots = indicatorsArea.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentImageIndex) dot.classList.add('active');
-                else dot.classList.remove('active');
-            });
-        }
-    };
-
-    // Navegação Botões Setas do Carrossel e do Lightbox
-    const goNextImage = (e) => {
-        if(e) e.stopPropagation();
-        if(currentImageArray.length > 0) {
-            currentImageIndex = (currentImageIndex + 1) % currentImageArray.length; // Volta pro início
-            renderCarouselState();
-        }
-    };
-
-    const goPrevImage = (e) => {
-        if(e) e.stopPropagation();
-        if(currentImageArray.length > 0) {
-            currentImageIndex = (currentImageIndex - 1 + currentImageArray.length) % currentImageArray.length; // Vai pro final se tivar no início
-            renderCarouselState();
-        }
-    };
-
-    btnNext.addEventListener('click', goNextImage);
-    btnPrev.addEventListener('click', goPrevImage);
-    lightboxNext.addEventListener('click', goNextImage);
-    lightboxPrev.addEventListener('click', goPrevImage);
-
-    // Eventos do Lightbox
-    btnFullscreen.addEventListener('click', () => {
-        if(currentImageArray.length > 0) {
-            lightboxImg.src = currentImageArray[currentImageIndex];
-            lightboxOverlay.classList.add('active');
-            
-            // Oculta setas do lightbox se só tiver 1 imagem
-            if(currentImageArray.length <= 1) {
-                lightboxNext.style.display = 'none';
-                lightboxPrev.style.display = 'none';
-            } else {
-                lightboxNext.style.display = 'block';
-                lightboxPrev.style.display = 'block';
-            }
-        }
-    });
-
-    const closeLightbox = () => {
-        lightboxOverlay.classList.remove('active');
-    };
-
-    lightboxCloseBtn.addEventListener('click', closeLightbox);
-
-    lightboxOverlay.addEventListener('click', (e) => {
-        // Se clicar fora da imagem ou botões, fecha
-        if (e.target === lightboxOverlay) {
-            closeLightbox();
-        }
-    });
-
-    // Função de ABRE o Modal
-    const triggerButtons = document.querySelectorAll('.clickable-modal');
-    
-    triggerButtons.forEach(card => {
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Qual ID precisamos buscar lá no nosso "Data Store"?
-            const refId = card.getAttribute('data-modal');
-            const dataSource = document.getElementById(refId);
-
-            if (dataSource) {
-                // 1. Coleta Textos
-                modalTitleElem.textContent = dataSource.getAttribute('data-title');
-                modalSubElem.textContent = dataSource.getAttribute('data-subtitle');
-                modalDescElem.innerHTML = dataSource.innerHTML; // Puxa todo interior em HTML (<p>, etc)
-                
-                // 1.5 Coleta e Montagem da Logo (Opcional p/ Histórico)
-                const logoData = dataSource.getAttribute('data-logo');
-                if (logoData && logoData.trim() !== "") {
-                    modalHeaderLogo.src = logoData;
-                    modalHeaderLogoContainer.style.display = 'flex';
-                } else {
-                    modalHeaderLogo.src = '';
-                    modalHeaderLogoContainer.style.display = 'none';
-                }
-
-                // 2. Coleta Imagens (Verifica se Existe)
-                const imgData = dataSource.getAttribute('data-images');
-                if (imgData && imgData.trim() !== "") {
-                    // Prepara Array transformando a string com "," num array de urls
-                    currentImageArray = imgData.split(',').map(url => url.trim());
-                    currentImageIndex = 0; 
-                    
-                    // Mostra o componente do carrossel
-                    carouselArea.style.display = 'flex';
-                    
-                    // Esconde botões caso só exista 1 foto (não precisa navegar)
-                    if(currentImageArray.length <= 1) {
-                        btnNext.style.display = 'none';
-                        btnPrev.style.display = 'none';
-                        indicatorsArea.innerHTML = ''; 
-                    } else {
-                        btnNext.style.display = 'flex';
-                        btnPrev.style.display = 'flex';
-                        
-                        // Cria os pontinhos dinâmicos
-                        indicatorsArea.innerHTML = '';
-                        currentImageArray.forEach((_, index) => {
-                            const dot = document.createElement('div');
-                            dot.classList.add('carousel-dot');
-                            if(index === 0) dot.classList.add('active');
-                            
-                            // Permite clique na bolinha
-                            dot.addEventListener('click', () => {
-                                currentImageIndex = index;
-                                renderCarouselState();
-                            });
-                            indicatorsArea.appendChild(dot);
-                        });
-                    }
-
-                    // Força primeira renderização das fotos
-                    renderCarouselState();
-
-                } else {
-                    // Limpa array e desabilita Carrossel (Como ocorre na sessão Trajetória que não precisa)
-                    currentImageArray = [];
-                    carouselArea.style.display = 'none';
-                }
-
-                // 3. Exibe o painel escuro fixo 
-                modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Tranca o scroll atrás pra não bagunçar
-            }
-        });
-    });
-
-    // Função de FECHA o Modal
-    const closeModal = () => {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Libera o fundo
-
-        // Retardar a limpeza dos dados pra que seja invisível e limpo
-        setTimeout(() => {
-            modalTitleElem.textContent = '';
-            modalSubElem.textContent = '';
-            modalDescElem.innerHTML = '';
-            modalHeaderLogo.src = '';
-            activeImageElem.src = '';
-            currentImageArray = [];
-        }, 300);
-    };
-
-    closeBtn.addEventListener('click', closeModal);
-
-    // Fechar caso usuário clique fora do bloco da caixa (No overlay translúcido)
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            closeModal();
-        }
-    });
-
-    // Eventos Globais de Teclado
-    window.addEventListener('keydown', (e) => {
-        // Tecla ESC para fechar
-        if (e.key === 'Escape') {
-            if (lightboxOverlay.classList.contains('active')) {
-                closeLightbox(); // Fecha só a imagem full se tiver aberta
-            } else if (modalOverlay.classList.contains('active')) {
-                closeModal(); // Ou fecha o modal todo
-            }
-        }
-
-        // Setas direcionais do teclado para navegação de fotos
-        if (modalOverlay.classList.contains('active') && currentImageArray.length > 1) {
-            if (e.key === 'ArrowRight') {
-                goNextImage();
-            } else if (e.key === 'ArrowLeft') {
-                goPrevImage();
-            }
-        }
-    });
+document.querySelectorAll("[data-project]").forEach((button) => {
+  button.addEventListener("click", () => {
+    activeCase = cases[button.dataset.project]; activeImageIndex = 0;
+    dialog.querySelector("[data-dialog-category]").textContent = activeCase.category;
+    dialog.querySelector("[data-dialog-title]").textContent = activeCase.title;
+    dialog.querySelector("[data-dialog-challenge]").textContent = activeCase.challenge;
+    dialog.querySelector("[data-dialog-action]").textContent = activeCase.action;
+    dialog.querySelector("[data-dialog-outcome]").textContent = activeCase.outcome;
+    dialog.querySelector("[data-dialog-tags]").replaceChildren(...activeCase.tags.map((tag) => { const span = document.createElement("span"); span.textContent = tag; return span; }));
+    renderGallery(); dialog.showModal();
+  });
+});
+galleryPrev.addEventListener("click", () => moveGallery(-1)); galleryNext.addEventListener("click", () => moveGallery(1));
+dialog.querySelector("[data-dialog-close]").addEventListener("click", () => dialog.close());
+dialog.addEventListener("click", (event) => { if (event.target === dialog) dialog.close(); });
+dialog.addEventListener("keydown", (event) => {
+  if (!activeCase || activeCase.images.length < 2) return;
+  if (event.key === "ArrowLeft") moveGallery(-1); if (event.key === "ArrowRight") moveGallery(1);
 });
