@@ -1,325 +1,112 @@
-/* =========================================================================
-   SCRIPT.JS - LÓGICA E INTERAÇÕES DO PORTFÓLIO (Minimalista Civil)
-   ========================================================================= */
+const projects = {
+  rodoviario: {
+    code: "PRJ–01", kicker: "INFRAESTRUTURA VIÁRIA · DISCIPLINA DE ESTRADAS · 2025", title: "Projeto Rodoviário Casa Nova",
+    description: "Projeto geométrico de uma rodovia com 48 km entre Casa Nova (BA) e o entroncamento do KM 25 em Petrolina (PE). O traçado considera o fluxo convencional e a logística de cargas especiais para componentes eólicos, com refinamento de greide e otimização de volumes de terraplenagem.",
+    image: "https://raw.githubusercontent.com/iAbsolute/Jackson-Santana-Engenharia-Civil/main/img/Projetos/civil3.png",
+    specs: [["TIPOLOGIA","Rodovia / infraestrutura"],["EXTENSÃO","48 km"],["FERRAMENTA","Autodesk Civil 3D"],["ESCOPO","Traçado, greide e terraplenagem"]]
+  },
+  eletrico: {
+    code: "PRJ–02", kicker: "INSTALAÇÕES PREDIAIS · PROJETO PARA CLIENTE", title: "Instalações Elétricas em BIM",
+    description: "Projeto de instalações elétricas de baixa tensão conforme a NBR 5410: modelagem, plantas, dimensionamento de eletrodutos e cargas, equilíbrio de fases e detalhamento de quadros e dispositivos de proteção. A metodologia BIM apoiou a compatibilização e a extração de quantitativos.",
+    image: "https://raw.githubusercontent.com/iAbsolute/Jackson-Santana-Engenharia-Civil/main/img/Projetos/elet2.png",
+    specs: [["TIPOLOGIA","Instalações elétricas"],["NORMA","NBR 5410"],["FERRAMENTA","Revit / BIM"],["ESCOPO","Modelagem, demanda e proteção"]]
+  },
+  hidro: {
+    code: "PRJ–03", kicker: "SANEAMENTO PREDIAL · CAPACITAÇÃO PRÁTICA · 2025", title: "Residência Hidrossanitária",
+    description: "Projeto para residência unifamiliar de dois pavimentos, incluindo água fria, esgoto sanitário, bomba pressurizadora de 9 mca, plantas, cortes, isométricos, barrilete e cavalete. A documentação foi estruturada para apoiar execução e levantamento quantitativo.",
+    image: "https://raw.githubusercontent.com/iAbsolute/Jackson-Santana-Engenharia-Civil/main/img/Projetos/hidro%20(5).png",
+    specs: [["TIPOLOGIA","Residencial / 2 pavimentos"],["NORMAS","NBR 5626 · 8160 · 10844"],["FERRAMENTA","Revit MEP"],["ESCOPO","Água fria e esgoto sanitário"]]
+  },
+  coordenacao: {
+    code: "PRJ–04", kicker: "GESTÃO TÉCNICA · COORDENAÇÃO MULTIDISCIPLINAR", title: "Coordenação Multidisciplinar",
+    description: "Coordenação de equipes e gestão simultânea de modelos de edificações, instalações elétricas e hidrossanitárias, além das matrizes de orçamento. O trabalho incluiu briefing, contato com cliente, controle de prazos, verificação de colisões e aderência ao contrato.",
+    image: "https://raw.githubusercontent.com/iAbsolute/Jackson-Santana-Engenharia-Civil/main/img/Projetos/coord2.png",
+    specs: [["TIPOLOGIA","Coordenação de projetos"],["DISCIPLINAS","Arquitetura · Elétrica · Hidro"],["FERRAMENTAS","BIM · MS Project · Excel"],["ESCOPO","Prazo, custos e clash detection"]]
+  }
+};
 
-document.addEventListener('DOMContentLoaded', () => {
-    
-    // --- 1. EFEITO NA NAVEGAÇÃO AO ROLAR (SCROll) ---
-    // Deixa o menu transparente com fundo sólido e menor ao rolar
-    const header = document.querySelector('.main-header');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 40) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-    });
+document.addEventListener("DOMContentLoaded", () => {
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const loader = document.querySelector(".preloader");
+  const loaderText = document.querySelector("#loader-text");
+  let progress = 0;
+  const finishLoader = () => {
+    loader.classList.add("is-done");
+    sessionStorage.setItem("portfolio-loaded", "true");
+  };
+  if (reduced || sessionStorage.getItem("portfolio-loaded")) finishLoader();
+  else {
+    const loadTimer = setInterval(() => {
+      progress = Math.min(100, progress + Math.ceil(Math.random() * 18));
+      loaderText.textContent = progress < 70 ? `LOCANDO EIXOS — ${String(progress).padStart(2,"0")}%` : progress < 100 ? `VERIFICANDO COTAS — ${progress}%` : "ESTRUTURA LIBERADA — 100%";
+      if (progress === 100) { clearInterval(loadTimer); setTimeout(finishLoader, 420); }
+    }, 120);
+    setTimeout(finishLoader, 2600);
+  }
 
+  const header = document.querySelector(".site-header");
+  const menuButton = document.querySelector(".menu-toggle");
+  const nav = document.querySelector("#site-nav");
+  const onScroll = () => header.classList.toggle("is-scrolled", window.scrollY > 45);
+  onScroll(); window.addEventListener("scroll", onScroll, {passive:true});
+  menuButton.addEventListener("click", () => {
+    const open = nav.classList.toggle("is-open");
+    menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.textContent = open ? "FECHAR" : "MENU";
+  });
+  nav.querySelectorAll("a").forEach(link => link.addEventListener("click", () => { nav.classList.remove("is-open"); menuButton.setAttribute("aria-expanded","false"); menuButton.textContent="MENU"; }));
 
-    // --- 2. MENU MOBILE RESPONSIVO ---
-    const mobileToggle = document.querySelector('.mobile-menu-toggle');
-    const desktopNav = document.querySelector('.desktop-nav');
-    
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', () => {
-            desktopNav.classList.toggle('active');
-            const icon = mobileToggle.querySelector('i');
-            // Alterna o ícone de hambúrguer para um X
-            if (desktopNav.classList.contains('active')) {
-                icon.classList.replace('fa-bars', 'fa-times');
-            } else {
-                icon.classList.replace('fa-times', 'fa-bars');
-            }
-        });
+  const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add("is-visible"); revealObserver.unobserve(entry.target); }
+  }), { threshold: .12 });
+  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-        // Fechar o menu automaticamente caso o usuário clique em um link no mobile
-        const navLinks = document.querySelectorAll('.nav-link, .nav-cta');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (window.innerWidth <= 768) {
-                    desktopNav.classList.remove('active');
-                    mobileToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
-                }
-            });
-        });
-    }
+  const words = ["ENGENHARIA CIVIL", "MODELAGEM BIM", "INFRAESTRUTURA", "GESTÃO DE OBRAS"];
+  const typeTarget = document.querySelector("#typewriter");
+  let wordIndex = 0, charIndex = words[0].length, deleting = true;
+  if (!reduced) setInterval(() => {
+    const word = words[wordIndex];
+    if (deleting) { charIndex--; if (charIndex <= 0) { deleting = false; wordIndex = (wordIndex + 1) % words.length; } }
+    else { charIndex++; if (charIndex >= words[wordIndex].length) deleting = true; }
+    typeTarget.textContent = words[wordIndex].slice(0, Math.max(0,charIndex)) + (deleting ? "_" : "▌");
+  }, 115);
 
+  const cursor = document.querySelector(".cursor-coordinates");
+  window.addEventListener("pointermove", event => {
+    cursor.style.left = `${event.clientX}px`; cursor.style.top = `${event.clientY}px`;
+    cursor.textContent = `X ${String(event.clientX).padStart(4,"0")} · Y ${String(event.clientY).padStart(4,"0")}`;
+  }, {passive:true});
 
-    // --- 3. OBSERVAÇÃO DE SCROLL (FADE UP TRANQUILO E FORMAL) ---
-    // Suavamente apresenta os blocos de conteúdo ao invés de aparecerem derrepente
-    const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.1 // Gatilho dispara logo que 10% entra na tela
-    };
+  const rail = document.querySelector(".project-rail");
+  document.querySelectorAll("[data-view]").forEach(button => button.addEventListener("click", () => {
+    document.querySelectorAll("[data-view]").forEach(btn => btn.classList.toggle("is-active", btn === button));
+    rail.classList.toggle("is-blueprint", button.dataset.view === "blueprint");
+  }));
+  rail.addEventListener("keydown", event => {
+    if (event.key === "ArrowRight") rail.scrollBy({left: Math.min(innerWidth*.7,780),behavior:"smooth"});
+    if (event.key === "ArrowLeft") rail.scrollBy({left:-Math.min(innerWidth*.7,780),behavior:"smooth"});
+  });
 
-    const scrollObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                // Parar de observar depois de exibir a primeira vez:
-                observer.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
+  const dialog = document.querySelector("#project-dialog");
+  const closeDialog = () => dialog.close();
+  document.querySelector(".dialog-close").addEventListener("click", closeDialog);
+  dialog.addEventListener("click", event => { if (event.target === dialog) closeDialog(); });
+  document.querySelectorAll(".project-panel").forEach(panel => panel.querySelector("button").addEventListener("click", () => {
+    const data = projects[panel.dataset.project];
+    document.querySelector("#dialog-code").textContent = data.code;
+    document.querySelector("#dialog-kicker").textContent = data.kicker;
+    document.querySelector("#dialog-title").textContent = data.title;
+    document.querySelector("#dialog-description").textContent = data.description;
+    const image = document.querySelector("#dialog-image"); image.src = data.image; image.alt = `Documento técnico de ${data.title}`;
+    document.querySelector("#dialog-specs").innerHTML = data.specs.map(([term,value]) => `<div><dt>${term}</dt><dd>${value}</dd></div>`).join("");
+    dialog.showModal();
+  }));
 
-    const fadeElements = document.querySelectorAll('.observe-fade-up');
-    fadeElements.forEach(el => scrollObserver.observe(el));
-
-
-    // --- 4. DESTAQUE DO MENU ATIVO ---
-    // Ilumina de 'Cobre/Ouro' a seção em que o usuário está atualmente na página
-    const sections = document.querySelectorAll('.section');
-    const menuLinks = document.querySelectorAll('.nav-link');
-
-    window.addEventListener('scroll', () => {
-        let currentLevel = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            // Se já passou -200px da secao atual, ele entende que entramos ativamente nela
-            if (scrollY >= (sectionTop - 150)) {
-                currentLevel = section.getAttribute('id');
-            }
-        });
-
-        menuLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').includes(currentLevel)) {
-                link.classList.add('active');
-            }
-        });
-    });
-
-
-    // --- 5. SISTEMA DO MODAL E GALERIA (CARROSSEL DE IMAGENS) ---
-    const modalOverlay = document.getElementById('general-modal');
-    const closeBtn = document.querySelector('.modal-close-icon');
-
-    const modalTitleElem = document.getElementById('modal-main-title');
-    const modalSubElem = document.getElementById('modal-subtitle');
-    const modalDescElem = document.getElementById('modal-desc');
-    const modalHeaderLogo = document.getElementById('modal-header-logo');
-    const modalHeaderLogoContainer = document.getElementById('modal-header-logo-container');
-    
-    // Variáveis Relacionadas ao Carrossel de Imagens no Modal
-    const carouselArea = document.getElementById('modal-carousel-area');
-    const activeImageElem = document.getElementById('carousel-active-image');
-    const btnPrev = document.getElementById('carousel-prev');
-    const btnNext = document.getElementById('carousel-next');
-    const indicatorsArea = document.getElementById('carousel-indicators');
-
-    // Variáveis Lightbox (Fullscreen)
-    const lightboxOverlay = document.getElementById('lightbox-overlay');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const btnFullscreen = document.getElementById('btn-fullscreen');
-    const lightboxCloseBtn = document.getElementById('lightbox-close');
-    const lightboxPrev = document.getElementById('lightbox-prev');
-    const lightboxNext = document.getElementById('lightbox-next');
-
-    let currentImageArray = [];
-    let currentImageIndex = 0;
-
-    // Função Interna para Atualizar a Visão da Imagem e Lightbox
-    const renderCarouselState = () => {
-        if (currentImageArray.length > 0) {
-            // Atualiza a fonte da imagem (com fade para n ficar quebrado)
-            activeImageElem.style.opacity = 0;
-            if (lightboxOverlay.classList.contains('active')) {
-                lightboxImg.style.opacity = 0;
-            }
-
-            setTimeout(() => {
-                activeImageElem.src = currentImageArray[currentImageIndex];
-                activeImageElem.style.opacity = 1;
-                
-                if (lightboxOverlay.classList.contains('active')) {
-                    lightboxImg.src = currentImageArray[currentImageIndex];
-                    lightboxImg.style.opacity = 1;
-                }
-            }, 150); // micro retardo
-            
-            // Atualiza bolinhas (indicators)
-            const dots = indicatorsArea.querySelectorAll('.carousel-dot');
-            dots.forEach((dot, index) => {
-                if (index === currentImageIndex) dot.classList.add('active');
-                else dot.classList.remove('active');
-            });
-        }
-    };
-
-    // Navegação Botões Setas do Carrossel e do Lightbox
-    const goNextImage = (e) => {
-        if(e) e.stopPropagation();
-        if(currentImageArray.length > 0) {
-            currentImageIndex = (currentImageIndex + 1) % currentImageArray.length; // Volta pro início
-            renderCarouselState();
-        }
-    };
-
-    const goPrevImage = (e) => {
-        if(e) e.stopPropagation();
-        if(currentImageArray.length > 0) {
-            currentImageIndex = (currentImageIndex - 1 + currentImageArray.length) % currentImageArray.length; // Vai pro final se tivar no início
-            renderCarouselState();
-        }
-    };
-
-    btnNext.addEventListener('click', goNextImage);
-    btnPrev.addEventListener('click', goPrevImage);
-    lightboxNext.addEventListener('click', goNextImage);
-    lightboxPrev.addEventListener('click', goPrevImage);
-
-    // Eventos do Lightbox
-    btnFullscreen.addEventListener('click', () => {
-        if(currentImageArray.length > 0) {
-            lightboxImg.src = currentImageArray[currentImageIndex];
-            lightboxOverlay.classList.add('active');
-            
-            // Oculta setas do lightbox se só tiver 1 imagem
-            if(currentImageArray.length <= 1) {
-                lightboxNext.style.display = 'none';
-                lightboxPrev.style.display = 'none';
-            } else {
-                lightboxNext.style.display = 'block';
-                lightboxPrev.style.display = 'block';
-            }
-        }
-    });
-
-    const closeLightbox = () => {
-        lightboxOverlay.classList.remove('active');
-    };
-
-    lightboxCloseBtn.addEventListener('click', closeLightbox);
-
-    lightboxOverlay.addEventListener('click', (e) => {
-        // Se clicar fora da imagem ou botões, fecha
-        if (e.target === lightboxOverlay) {
-            closeLightbox();
-        }
-    });
-
-    // Função de ABRE o Modal
-    const triggerButtons = document.querySelectorAll('.clickable-modal');
-    
-    triggerButtons.forEach(card => {
-        card.addEventListener('click', (e) => {
-            e.preventDefault();
-            
-            // Qual ID precisamos buscar lá no nosso "Data Store"?
-            const refId = card.getAttribute('data-modal');
-            const dataSource = document.getElementById(refId);
-
-            if (dataSource) {
-                // 1. Coleta Textos
-                modalTitleElem.textContent = dataSource.getAttribute('data-title');
-                modalSubElem.textContent = dataSource.getAttribute('data-subtitle');
-                modalDescElem.innerHTML = dataSource.innerHTML; // Puxa todo interior em HTML (<p>, etc)
-                
-                // 1.5 Coleta e Montagem da Logo (Opcional p/ Histórico)
-                const logoData = dataSource.getAttribute('data-logo');
-                if (logoData && logoData.trim() !== "") {
-                    modalHeaderLogo.src = logoData;
-                    modalHeaderLogoContainer.style.display = 'flex';
-                } else {
-                    modalHeaderLogo.src = '';
-                    modalHeaderLogoContainer.style.display = 'none';
-                }
-
-                // 2. Coleta Imagens (Verifica se Existe)
-                const imgData = dataSource.getAttribute('data-images');
-                if (imgData && imgData.trim() !== "") {
-                    // Prepara Array transformando a string com "," num array de urls
-                    currentImageArray = imgData.split(',').map(url => url.trim());
-                    currentImageIndex = 0; 
-                    
-                    // Mostra o componente do carrossel
-                    carouselArea.style.display = 'flex';
-                    
-                    // Esconde botões caso só exista 1 foto (não precisa navegar)
-                    if(currentImageArray.length <= 1) {
-                        btnNext.style.display = 'none';
-                        btnPrev.style.display = 'none';
-                        indicatorsArea.innerHTML = ''; 
-                    } else {
-                        btnNext.style.display = 'flex';
-                        btnPrev.style.display = 'flex';
-                        
-                        // Cria os pontinhos dinâmicos
-                        indicatorsArea.innerHTML = '';
-                        currentImageArray.forEach((_, index) => {
-                            const dot = document.createElement('div');
-                            dot.classList.add('carousel-dot');
-                            if(index === 0) dot.classList.add('active');
-                            
-                            // Permite clique na bolinha
-                            dot.addEventListener('click', () => {
-                                currentImageIndex = index;
-                                renderCarouselState();
-                            });
-                            indicatorsArea.appendChild(dot);
-                        });
-                    }
-
-                    // Força primeira renderização das fotos
-                    renderCarouselState();
-
-                } else {
-                    // Limpa array e desabilita Carrossel (Como ocorre na sessão Trajetória que não precisa)
-                    currentImageArray = [];
-                    carouselArea.style.display = 'none';
-                }
-
-                // 3. Exibe o painel escuro fixo 
-                modalOverlay.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Tranca o scroll atrás pra não bagunçar
-            }
-        });
-    });
-
-    // Função de FECHA o Modal
-    const closeModal = () => {
-        modalOverlay.classList.remove('active');
-        document.body.style.overflow = 'auto'; // Libera o fundo
-
-        // Retardar a limpeza dos dados pra que seja invisível e limpo
-        setTimeout(() => {
-            modalTitleElem.textContent = '';
-            modalSubElem.textContent = '';
-            modalDescElem.innerHTML = '';
-            modalHeaderLogo.src = '';
-            activeImageElem.src = '';
-            currentImageArray = [];
-        }, 300);
-    };
-
-    closeBtn.addEventListener('click', closeModal);
-
-    // Fechar caso usuário clique fora do bloco da caixa (No overlay translúcido)
-    modalOverlay.addEventListener('click', (e) => {
-        if (e.target === modalOverlay) {
-            closeModal();
-        }
-    });
-
-    // Eventos Globais de Teclado
-    window.addEventListener('keydown', (e) => {
-        // Tecla ESC para fechar
-        if (e.key === 'Escape') {
-            if (lightboxOverlay.classList.contains('active')) {
-                closeLightbox(); // Fecha só a imagem full se tiver aberta
-            } else if (modalOverlay.classList.contains('active')) {
-                closeModal(); // Ou fecha o modal todo
-            }
-        }
-
-        // Setas direcionais do teclado para navegação de fotos
-        if (modalOverlay.classList.contains('active') && currentImageArray.length > 1) {
-            if (e.key === 'ArrowRight') {
-                goNextImage();
-            } else if (e.key === 'ArrowLeft') {
-                goPrevImage();
-            }
-        }
-    });
+  const sections = [...document.querySelectorAll("main section[id]")];
+  const activeObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    nav.querySelectorAll("a").forEach(link => link.classList.toggle("is-active", link.getAttribute("href") === `#${entry.target.id}`));
+  }), { rootMargin: "-35% 0px -55%" });
+  sections.forEach(section => activeObserver.observe(section));
 });
+
